@@ -11,7 +11,8 @@ class RSSService {
         pubDate: new Date().toISOString(),
         author: "RSS Aggregator Team",
         source: "demo",
-        sourceName: "Demo Content"
+        sourceName: "Demo Content",
+        image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop&crop=entropy"
       },
       {
         title: "React 18 Concurrent Features Explained",
@@ -20,7 +21,8 @@ class RSSService {
         pubDate: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
         author: "React Team",
         source: "demo",
-        sourceName: "React News"
+        sourceName: "React News",
+        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop&crop=entropy"
       },
       {
         title: "TypeScript 5.0: New Features and Improvements",
@@ -29,7 +31,8 @@ class RSSService {
         pubDate: new Date(Date.now() - 7200000).toISOString(), // 2 hours ago
         author: "TypeScript Team",
         source: "demo",
-        sourceName: "TypeScript Blog"
+        sourceName: "TypeScript Blog",
+        image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&h=400&fit=crop&crop=entropy"
       },
       {
         title: "Building Mobile-First Progressive Web Apps",
@@ -38,7 +41,8 @@ class RSSService {
         pubDate: new Date(Date.now() - 10800000).toISOString(), // 3 hours ago
         author: "Google Web Team",
         source: "demo",
-        sourceName: "Web Development"
+        sourceName: "Web Development",
+        image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop&crop=entropy"
       },
       {
         title: "Modern CSS Grid and Flexbox Techniques",
@@ -47,7 +51,8 @@ class RSSService {
         pubDate: new Date(Date.now() - 14400000).toISOString(), // 4 hours ago
         author: "CSS-Tricks Team",
         source: "demo",
-        sourceName: "CSS News"
+        sourceName: "CSS News",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop&crop=entropy"
       },
       {
         title: "Vite vs Create React App: Performance Comparison",
@@ -56,7 +61,8 @@ class RSSService {
         pubDate: new Date(Date.now() - 18000000).toISOString(), // 5 hours ago
         author: "Vite Team",
         source: "demo",
-        sourceName: "Build Tools"
+        sourceName: "Build Tools",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop&crop=entropy"
       },
       {
         title: "Accessibility Best Practices for 2025",
@@ -65,7 +71,8 @@ class RSSService {
         pubDate: new Date(Date.now() - 21600000).toISOString(), // 6 hours ago
         author: "A11Y Project",
         source: "demo",
-        sourceName: "Accessibility"
+        sourceName: "Accessibility",
+        image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=400&fit=crop&crop=entropy"
       },
       {
         title: "GitHub Actions CI/CD Pipeline Setup",
@@ -74,7 +81,8 @@ class RSSService {
         pubDate: new Date(Date.now() - 25200000).toISOString(), // 7 hours ago
         author: "GitHub Team",
         source: "demo",
-        sourceName: "DevOps"
+        sourceName: "DevOps",
+        image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=800&h=400&fit=crop&crop=entropy"
       }
     ];
   }
@@ -99,7 +107,9 @@ class RSSService {
           link?: string; 
           description?: string; 
           pubDate?: string; 
-          author?: string 
+          author?: string;
+          thumbnail?: string;
+          enclosure?: { link?: string };
         }, index: number) => ({
           title: item.title || `Article ${index + 1}`,
           link: item.link || '',
@@ -107,7 +117,8 @@ class RSSService {
           pubDate: item.pubDate || new Date().toISOString(),
           author: item.author || '',
           source: feed.url,
-          sourceName: feed.name
+          sourceName: feed.name,
+          image: this.extractImage(item)
         }));
       }
       
@@ -158,6 +169,33 @@ class RSSService {
     
     // Limit description length for better mobile display
     return text.length > 200 ? text.substring(0, 200) + '...' : text;
+  }
+
+  private extractImage(item: {
+    thumbnail?: string;
+    enclosure?: { link?: string };
+    description?: string;
+  }): string | undefined {
+    // Try thumbnail first, then enclosure, then extract from description
+    if (item.thumbnail) return item.thumbnail;
+    if (item.enclosure?.link) return item.enclosure.link;
+    
+    const description = item.description || '';
+    if (!description) return undefined;
+    
+    // Try to extract image from HTML content in description
+    const imgRegex = /<img[^>]+src\s*=\s*['"]+([^'"]*)['"]+[^>]*>/i;
+    const match = description.match(imgRegex);
+    
+    if (match && match[1]) {
+      // Make sure it's a valid image URL
+      const imageUrl = match[1];
+      if (imageUrl.match(/\.(jpg|jpeg|png|gif|webp|svg)(\?|$)/i)) {
+        return imageUrl;
+      }
+    }
+    
+    return undefined;
   }
 }
 

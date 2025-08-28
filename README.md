@@ -45,6 +45,7 @@ A beautiful, mobile-first RSS news aggregator built with React, TypeScript, and 
   - [🔧 Configuration](#-configuration)
     - [CORS Handling](#cors-handling)
     - [Mobile Optimization](#mobile-optimization)
+    - [Image Features](#image-features)
   - [🚫 Privacy \& Legal](#-privacy--legal)
   - [🤝 Contributing](#-contributing)
     - [Development Guidelines](#development-guidelines)
@@ -60,13 +61,16 @@ A beautiful, mobile-first RSS news aggregator built with React, TypeScript, and 
 
 - 📱 **Mobile-First Design**: Optimized reading experience for mobile devices
 - 🔄 **RSS Aggregation**: Fetch and display content from multiple RSS sources
-- ⚡ **Fast Loading**: Built with Vite for optimal performance and hot reload
+- 🖼️ **Image Support**: Automatically extracts and displays article images from RSS feeds
+- ⚡ **Lazy Loading**: Images load only when needed for optimal performance
 - 🎨 **Beautiful UI**: Clean, modern interface with smooth animations
 - 📰 **Multiple News Sources**: Aggregates from BBC, TechCrunch, Hacker News, The Guardian, and Dev.to
 - 🚀 **Auto-Deploy**: Automatic deployment to custom domain via GitHub Actions
 - 🕒 **Smart Timestamps**: Human-readable relative time display
 - 🏷️ **Source Attribution**: Color-coded tags for easy source identification
 - 🔒 **Privacy Focused**: No tracking, includes robots.txt for search engine exclusion
+- 🌐 **Cross-Origin Ready**: Uses RSS2JSON proxy for reliable feed access
+- 📱 **Intersection Observer**: Modern lazy loading API for smooth performance
 
 ## 🛠️ Technology Stack
 
@@ -74,6 +78,8 @@ A beautiful, mobile-first RSS news aggregator built with React, TypeScript, and 
 - **Build Tool**: Vite 7.x
 - **Styling**: Custom CSS with mobile-first responsive design
 - **RSS Parsing**: Browser-native DOMParser with CORS proxy support
+- **Image Processing**: Automatic image extraction from RSS feeds with lazy loading
+- **Performance**: Intersection Observer API for efficient image loading
 - **Date Handling**: date-fns for timestamp formatting
 - **Deployment**: GitHub Actions → GitHub Pages → Custom Domain
 - **Node.js**: 22.12.0 (see `.nvmrc`)
@@ -90,12 +96,12 @@ rss/
 │   ├── config/
 │   │   └── feeds.ts      # RSS feed sources configuration
 │   ├── services/
-│   │   └── rssService.ts # RSS parsing and fetching logic
+│   │   └── rssService.ts # RSS parsing, fetching, and image extraction
 │   ├── styles/
-│   │   └── App.css       # Mobile-first responsive styles
+│   │   └── App.css       # Mobile-first responsive styles with image layouts
 │   ├── types/
-│   │   └── rss.ts        # TypeScript type definitions
-│   ├── App.tsx           # Main application component
+│   │   └── rss.ts        # TypeScript type definitions (includes image support)
+│   ├── App.tsx           # Main app component with lazy loading images
 │   └── main.tsx          # React entry point
 ├── .nvmrc                # Node.js version specification
 ├── vite.config.ts        # Vite configuration for custom domain
@@ -214,7 +220,7 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
 
 ### CORS Handling
 
-RSS feeds are fetched through a CORS proxy (`allorigins.win`) since most RSS feeds don't support CORS headers. The proxy is configured in `src/services/rssService.ts` and uses browser-native DOMParser for XML parsing.
+RSS feeds are fetched through RSS2JSON proxy service since most RSS feeds don't support CORS headers. The service is configured in `src/services/rssService.ts` and provides reliable feed parsing with multiple fallback mechanisms.
 
 ### Mobile Optimization
 
@@ -223,6 +229,15 @@ The application uses:
 - Touch-friendly interactive elements
 - Optimized typography for mobile reading
 - Progressive enhancement for larger screens
+- Lazy loading images with Intersection Observer for performance
+
+### Image Features
+
+- **Smart Image Extraction**: Automatically detects images from RSS feed items
+- **Multiple Sources**: Supports thumbnail, enclosure, and HTML description images  
+- **Lazy Loading**: Images load only when entering viewport using Intersection Observer
+- **Error Handling**: Graceful fallback to placeholder when images fail to load
+- **Performance**: Reduces initial page load and bandwidth usage
 
 ## 🚫 Privacy & Legal
 
@@ -274,10 +289,14 @@ For issues and feature requests, please [open an issue](https://github.com/pearp
 
 ## 🚀 Performance Features
 
-- **Lazy Loading**: Articles load progressively for better performance
-- **CORS Proxy**: Handles RSS feeds that don't support CORS headers
-- **Error Handling**: Graceful fallbacks when feeds are unavailable
-- **Responsive Images**: Optimized asset loading for mobile devices
+- **Lazy Loading Images**: Uses Intersection Observer API to load images only when needed
+- **Smart Image Extraction**: Automatically finds and displays article images from RSS feeds
+- **Progressive Loading**: Articles and images load progressively for better performance
+- **RSS2JSON Proxy**: Reliable RSS feed parsing with CORS support
+- **Error Handling**: Graceful fallbacks when feeds or images are unavailable
+- **Responsive Images**: 200px height with object-fit for consistent layout
+- **Smooth Transitions**: CSS animations for loading states and image reveals
+- **Bandwidth Optimization**: Images only load when entering viewport
 - **Fast Refresh**: Hot module replacement during development
 
 ## 🎯 Future Enhancements
@@ -288,6 +307,10 @@ For issues and feature requests, please [open an issue](https://github.com/pearp
 - [ ] Offline reading with service workers
 - [ ] Push notifications for new articles
 - [ ] Export articles to PDF/EPUB
+- [ ] Image zoom/lightbox functionality
+- [ ] Article bookmark/save feature
+- [ ] Advanced image optimization (WebP, compression)
+- [ ] Infinite scroll for older articles
 
 ## 📱 Browser Support
 
