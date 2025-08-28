@@ -14,8 +14,14 @@ function App() {
     try {
       setLoading(true);
       setError(null);
+      console.log('Fetching RSS feeds...');
       const items = await rssService.fetchMultipleFeeds(DEFAULT_RSS_FEEDS);
+      console.log(`Successfully loaded ${items.length} articles`);
       setArticles(items);
+      
+      if (items.length === 0) {
+        setError('No articles could be loaded from RSS feeds. This might be a temporary issue with the feed sources.');
+      }
     } catch (err) {
       setError('Failed to fetch RSS feeds. Please try again later.');
       console.error('Error fetching articles:', err);

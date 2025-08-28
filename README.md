@@ -3,8 +3,58 @@
 A beautiful, mobile-first RSS news aggregator built with React, TypeScript, and Vite. This application aggregates content from multiple RSS feeds and presents them in a clean, readable format optimized for mobile devices.
 
 [![Deploy to GitHub Pages](https://github.com/pearpages/rss/actions/workflows/deploy.yml/badge.svg)](https://github.com/pearpages/rss/actions/workflows/deploy.yml)
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
+![Vite](https://img.shields.io/badge/Vite-7.x-purple?logo=vite)
+![Mobile First](https://img.shields.io/badge/Mobile-First-green)
+![License](https://img.shields.io/badge/License-Personal_Use-orange)
 
 🌐 **Live Demo**: [https://rss.pages.ninja](https://rss.pages.ninja)
+
+## 📸 Screenshots
+
+### Mobile Experience
+*Clean, card-based design optimized for mobile reading*
+
+### Desktop Experience  
+*Responsive layout that scales beautifully to larger screens*
+
+> 📱 **Best viewed on mobile devices** - This app is designed with mobile-first principles for the optimal news reading experience on your phone.
+
+## 📑 Table of Contents
+
+- [📰 RSS News Aggregator](#-rss-news-aggregator)
+  - [📸 Screenshots](#-screenshots)
+    - [Mobile Experience](#mobile-experience)
+    - [Desktop Experience](#desktop-experience)
+  - [📑 Table of Contents](#-table-of-contents)
+  - [✨ Features](#-features)
+  - [🛠️ Technology Stack](#️-technology-stack)
+  - [🏗️ Project Structure](#️-project-structure)
+  - [⚡ Quick Start](#-quick-start)
+  - [🚀 Getting Started](#-getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [📜 Available Scripts](#-available-scripts)
+  - [🌐 Deployment](#-deployment)
+    - [Automatic Deployment](#automatic-deployment)
+    - [Manual Deployment](#manual-deployment)
+    - [Custom Domain Setup](#custom-domain-setup)
+  - [📰 RSS Sources](#-rss-sources)
+    - [Adding New RSS Sources](#adding-new-rss-sources)
+  - [🔧 Configuration](#-configuration)
+    - [CORS Handling](#cors-handling)
+    - [Mobile Optimization](#mobile-optimization)
+  - [🚫 Privacy \& Legal](#-privacy--legal)
+  - [🤝 Contributing](#-contributing)
+    - [Development Guidelines](#development-guidelines)
+  - [📄 License](#-license)
+  - [🐛 Troubleshooting](#-troubleshooting)
+    - [Common Issues](#common-issues)
+  - [📞 Support](#-support)
+  - [🚀 Performance Features](#-performance-features)
+  - [🎯 Future Enhancements](#-future-enhancements)
+  - [📱 Browser Support](#-browser-support)
 
 ## ✨ Features
 
@@ -23,7 +73,7 @@ A beautiful, mobile-first RSS news aggregator built with React, TypeScript, and 
 - **Frontend**: React 18 with TypeScript
 - **Build Tool**: Vite 7.x
 - **Styling**: Custom CSS with mobile-first responsive design
-- **RSS Parsing**: rss-parser library with CORS proxy support
+- **RSS Parsing**: Browser-native DOMParser with CORS proxy support
 - **Date Handling**: date-fns for timestamp formatting
 - **Deployment**: GitHub Actions → GitHub Pages → Custom Domain
 - **Node.js**: 22.12.0 (see `.nvmrc`)
@@ -50,6 +100,20 @@ rss/
 ├── .nvmrc                # Node.js version specification
 ├── vite.config.ts        # Vite configuration for custom domain
 └── package.json          # Dependencies and scripts
+```
+
+## ⚡ Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/pearpages/rss.git
+cd rss
+npm install
+
+# Start development
+npm run dev
+
+# Open http://localhost:5173
 ```
 
 ## 🚀 Getting Started
@@ -150,7 +214,7 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
 
 ### CORS Handling
 
-RSS feeds are fetched through a CORS proxy (`allorigins.win`) since most RSS feeds don't support CORS headers. The proxy is configured in `src/services/rssService.ts`.
+RSS feeds are fetched through a CORS proxy (`allorigins.win`) since most RSS feeds don't support CORS headers. The proxy is configured in `src/services/rssService.ts` and uses browser-native DOMParser for XML parsing.
 
 ### Mobile Optimization
 
@@ -208,72 +272,29 @@ This project is for personal use only. Please respect the original content provi
 
 For issues and feature requests, please [open an issue](https://github.com/pearpages/rss/issues) on GitHub.
 
+## 🚀 Performance Features
+
+- **Lazy Loading**: Articles load progressively for better performance
+- **CORS Proxy**: Handles RSS feeds that don't support CORS headers
+- **Error Handling**: Graceful fallbacks when feeds are unavailable
+- **Responsive Images**: Optimized asset loading for mobile devices
+- **Fast Refresh**: Hot module replacement during development
+
+## 🎯 Future Enhancements
+
+- [ ] Dark mode toggle
+- [ ] Custom RSS feed management
+- [ ] Article search and filtering
+- [ ] Offline reading with service workers
+- [ ] Push notifications for new articles
+- [ ] Export articles to PDF/EPUB
+
+## 📱 Browser Support
+
+- **Mobile**: iOS Safari 14+, Chrome Mobile 90+
+- **Desktop**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **Modern browsers** with ES2020 support
+
 ---
 
 Built with ❤️ for better news consumption experience
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
