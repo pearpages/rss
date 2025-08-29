@@ -26,13 +26,11 @@ const LazyImage: React.FC<{
   return (
     <div
       ref={imgRef}
-      className={`lazy-image ${
-        isLoaded ? "lazy-image--loaded" : ""
-      } ${
-        isInView && !isLoaded && !hasError ? "lazy-image--loading" : ""
+      className={`lazy-image ${isLoaded ? "lazy-image--loaded" : ""} ${
+        isInView && !isLoaded ? "lazy-image--loading" : ""
       } ${className}`}
     >
-      {isInView && !hasError && (
+      {isInView && (
         <img
           src={src}
           alt={alt}
@@ -43,7 +41,7 @@ const LazyImage: React.FC<{
           onError={handleImageError}
         />
       )}
-      {!isLoaded && isInView && !hasError && (
+      {!isLoaded && isInView && (
         <div className="lazy-image__loading">
           <div className="lazy-image__spinner"></div>
         </div>

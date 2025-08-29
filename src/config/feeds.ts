@@ -25,5 +25,10 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
     name: 'NASA News',
     url: 'https://www.nasa.gov/rss/dyn/breaking_news.rss',
     category: 'Science'
+  },
+  {
+    name: 'Al Jazeera',
+    url: 'https://www.aljazeera.com/xml/rss/all.xml',
+    category: 'News'
   }
 ];
