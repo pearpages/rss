@@ -75,7 +75,7 @@ function App() {
         <div className="articles-list">
           {articles.map((article, index) => (
             <article key={`${article.link}-${index}`} className="article-card">
-              {article.image ? (
+              {article.image && (
                 <LazyImage
                   src={article.image}
                   alt={article.title}
@@ -84,8 +84,6 @@ function App() {
                     // Image failed to load, this will be handled by the component
                   }}
                 />
-              ) : (
-                <div className="article-image-placeholder">📰</div>
               )}
 
               <div className="article-content">

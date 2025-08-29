@@ -18,18 +18,20 @@ const LazyImage: React.FC<{
     onError();
   };
 
+  if (hasError) {
+    console.warn(`Image failed to load: ${src}`);
+    return null;
+  }
+
   return (
     <div
       ref={imgRef}
       className={`lazy-image ${
         isLoaded ? "lazy-image--loaded" : ""
+      } ${
+        isInView && !isLoaded && !hasError ? "lazy-image--loading" : ""
       } ${className}`}
     >
-      {hasError && (
-        <div className="lazy-image__placeholder lazy-image__placeholder--error">
-          ❌
-        </div>
-      )}
       {isInView && !hasError && (
         <img
           src={src}
