@@ -4,7 +4,7 @@ import { rssService } from "./services/rssService";
 import { DEFAULT_RSS_FEEDS } from "./config/feeds";
 import type { RSSItem } from "./types/rss";
 import "./styles/App.css";
-import { LazyImage } from "./components/LasyImage";
+import { LazyImage } from "./components/LazyImage";
 
 function App() {
   const [articles, setArticles] = useState<RSSItem[]>([]);

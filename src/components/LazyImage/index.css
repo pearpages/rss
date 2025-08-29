@@ -1,0 +1,72 @@
+/* LazyImage component styles using BEM methodology */
+
+.lazy-image {
+  position: relative;
+  min-height: 200px;
+  background-color: #f1f5f9;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.lazy-image--loaded {
+  background-color: transparent;
+}
+
+.lazy-image__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-image__img--loaded {
+  opacity: 1;
+}
+
+.lazy-image__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 2rem;
+}
+
+.lazy-image__placeholder--error {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 3rem;
+}
+
+.lazy-image__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.lazy-image__spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: lazy-image-spin 1s linear infinite;
+}
+
+@keyframes lazy-image-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
