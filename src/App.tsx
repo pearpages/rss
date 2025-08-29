@@ -1,15 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { rssService } from "./services/rssService";
 import { DEFAULT_RSS_FEEDS } from "./config/feeds";
 import type { RSSItem } from "./types/rss";
 import "./styles/App.css";
 import { LazyImage } from "./components/LazyImage";
+import { Menu } from "./components/Menu";
 
 function App() {
   const [articles, setArticles] = useState<RSSItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+    // Get unique source names from feeds
+  const availableSources = useMemo(() => {
+    return DEFAULT_RSS_FEEDS.map(feed => feed.name);
+  }, []);
+  const [selectedSources, setSelectedSources] = useState<string[]>(availableSources);
+  const [showSavedOnly, setShowSavedOnly] = useState(false);
+
+  // Filter articles based on selected sources
+  const filteredArticles = useMemo(() => {
+    let filtered = articles;
+    
+    // Filter by selected sources (if any are selected)
+    if (selectedSources.length > 0) {
+      filtered = filtered.filter(article => 
+        selectedSources.includes(article.sourceName)
+      );
+    }
+    
+    // TODO: Filter by saved articles when we implement saved functionality
+    if (showSavedOnly) {
+      // For now, just return empty array as we haven't implemented saved articles yet
+      filtered = [];
+    }
+    
+    return filtered;
+  }, [articles, selectedSources, showSavedOnly]);
 
   const fetchArticles = async () => {
     try {
@@ -41,20 +68,34 @@ function App() {
     fetchArticles();
   };
 
+  const handleFilterSources = (sources: string[]) => {
+    setSelectedSources(sources);
+  };
+
+  const handleViewSaved = () => {
+    setShowSavedOnly(!showSavedOnly);
+  };
+
   return (
     <div className="app">
       <header className="header">
-        <h1>📰 RSS News Aggregator</h1>
-      </header>
-
-      <main className="news-container">
         <button
           className="refresh-button"
           onClick={handleRefresh}
           disabled={loading}
         >
-          {loading ? "Loading..." : "🔄 Refresh"}
+          {loading ? "Loading..." : "🔄"}
         </button>
+        <h1>📰 RSS News Aggregator</h1>
+        <Menu
+          onFilterSources={handleFilterSources}
+          onViewSaved={handleViewSaved}
+          availableSources={availableSources}
+          selectedSources={selectedSources}
+        />
+      </header>
+
+      <main className="news-container">
 
         {error && <div className="error">{error}</div>}
 
@@ -72,8 +113,14 @@ function App() {
           </div>
         )}
 
+        {!loading && filteredArticles.length === 0 && articles.length > 0 && (
+          <div className="error">
+            No articles match your current filters.
+          </div>
+        )}
+
         <div className="articles-list">
-          {articles.map((article, index) => (
+          {filteredArticles.map((article, index) => (
             <article key={`${article.link}-${index}`} className="article-card">
               {article.image && (
                 <LazyImage
