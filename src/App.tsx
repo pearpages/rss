@@ -96,6 +96,10 @@ function App() {
     setShowSavedOnly(!showSavedOnly);
   };
 
+  const handleGoToFeeds = () => {
+    setShowSavedOnly(false);
+  };
+
   return (
     <div className="app">
       {/* Storage notification for users with limited storage */}
@@ -116,12 +120,20 @@ function App() {
         >
           {loading ? "Loading..." : "🔄"}
         </button>
-        <h1>📰 RSS News Aggregator</h1>
+        {showSavedOnly ? (
+          <h1 className="header-title clickable" onClick={handleGoToFeeds}>
+            📰 RSS News Aggregator
+            <span className="back-indicator">← Back to feeds</span>
+          </h1>
+        ) : (
+          <h1 className="header-title">📰 RSS News Aggregator</h1>
+        )}
         <Menu
           onFilterSources={handleFilterSources}
           onViewSaved={handleViewSaved}
           availableSources={availableSources}
           selectedSources={selectedSources}
+          showSavedOnly={showSavedOnly}
         />
       </header>
 

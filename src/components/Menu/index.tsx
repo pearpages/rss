@@ -6,13 +6,15 @@ interface MenuProps {
   onViewSaved?: () => void;
   availableSources?: string[];
   selectedSources?: string[];
+  showSavedOnly?: boolean;
 }
 
 export const Menu = ({ 
   onFilterSources, 
   onViewSaved, 
   availableSources = [], 
-  selectedSources = [] 
+  selectedSources = [],
+  showSavedOnly = false
 }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -68,11 +70,11 @@ export const Menu = ({
             <div className="menu-content">
               <div className="menu-section">
                 <button 
-                  className="menu-item"
+                  className={`menu-item ${showSavedOnly ? 'active' : ''}`}
                   onClick={handleViewSaved}
                 >
                   <span className="menu-icon">⭐</span>
-                  Saved Articles
+                  {showSavedOnly ? 'Back to All Articles' : 'Saved Articles'}
                 </button>
               </div>
 
