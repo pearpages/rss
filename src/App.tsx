@@ -7,6 +7,7 @@ import "./styles/App.css";
 import { LazyImage } from "./components/LazyImage";
 import { Menu } from "./components/Menu";
 import { useUserPreferences } from "./hooks/useUserPreferences";
+import { getSourceColor, isLightColor } from "./utils/colorUtils";
 
 function App() {
   const [articles, setArticles] = useState<RSSItem[]>([]);
@@ -173,59 +174,71 @@ function App() {
         )}
 
         <div className="articles-list">
-          {filteredArticles.map((article, index) => (
-            <article key={`${article.link}-${index}`} className="article-card">
-              {article.image && (
-                <LazyImage
-                  src={article.image}
-                  alt={article.title}
-                  className="article-image"
-                  onError={() => {
-                    // Image failed to load, this will be handled by the component
-                  }}
-                />
-              )}
-
-              <div className="article-content">
-                <div className="article-header">
-                  <h2 className="article-title">
-                    <a
-                      href={article.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {article.title}
-                    </a>
-                  </h2>
-
-                  <div className="article-meta">
-                    <span className="source-tag">{article.sourceName}</span>
-                    <span className="article-date">
-                      {formatDistanceToNow(new Date(article.pubDate), {
-                        addSuffix: true,
-                      })}
-                    </span>
-                    {article.author && (
-                      <span className="article-author">
-                        by {article.author}
-                      </span>
-                    )}
-                    <button
-                      className={`save-button ${isArticleSaved(article.link) ? 'saved' : ''}`}
-                      onClick={() => toggleSaveArticle(article.link)}
-                      title={isArticleSaved(article.link) ? 'Remove from saved' : 'Save article'}
-                    >
-                      {isArticleSaved(article.link) ? '⭐' : '☆'}
-                    </button>
-                  </div>
-                </div>
-
-                {article.description && (
-                  <p className="article-description">{article.description}</p>
+          {filteredArticles.map((article, index) => {
+            const sourceColor = getSourceColor(article.sourceName);
+            
+            return (
+              <article key={`${article.link}-${index}`} className="article-card">
+                {article.image && (
+                  <LazyImage
+                    src={article.image}
+                    alt={article.title}
+                    className="article-image"
+                    onError={() => {
+                      // Image failed to load, this will be handled by the component
+                    }}
+                  />
                 )}
-              </div>
-            </article>
-          ))}
+
+                <div className="article-content">
+                  <div className="article-header">
+                    <h2 className="article-title">
+                      <a
+                        href={article.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {article.title}
+                      </a>
+                    </h2>
+
+                    <div className="article-meta">
+                      <span 
+                        className="source-tag"
+                        style={{
+                          backgroundColor: sourceColor,
+                          color: isLightColor(sourceColor) ? '#1e293b' : 'white'
+                        }}
+                      >
+                        {article.sourceName}
+                      </span>
+                      <span className="article-date">
+                        {formatDistanceToNow(new Date(article.pubDate), {
+                          addSuffix: true,
+                        })}
+                      </span>
+                      {article.author && (
+                        <span className="article-author">
+                          by {article.author}
+                        </span>
+                      )}
+                      <button
+                        className={`save-button ${isArticleSaved(article.link) ? 'saved' : ''}`}
+                        onClick={() => toggleSaveArticle(article.link)}
+                        title={isArticleSaved(article.link) ? 'Remove from saved' : 'Save article'}
+                      >
+                        {isArticleSaved(article.link) ? '⭐' : '☆'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {article.description && (
+                    <p className="article-description">{article.description}</p>
+                  )}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </main>
     </div>
