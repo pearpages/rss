@@ -6,19 +6,38 @@ import type { RSSItem } from "./types/rss";
 import "./styles/App.css";
 import { LazyImage } from "./components/LazyImage";
 import { Menu } from "./components/Menu";
+import { useUserPreferences } from "./hooks/useUserPreferences";
 
 function App() {
   const [articles, setArticles] = useState<RSSItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-    // Get unique source names from feeds
+  
+  // Use the preferences hook
+  const {
+    selectedSources,
+    updateSelectedSources,
+    savedArticles,
+    isArticleSaved,
+    toggleSaveArticle,
+    cookiesEnabled
+  } = useUserPreferences();
+  
+  // Get unique source names from feeds
   const availableSources = useMemo(() => {
     return DEFAULT_RSS_FEEDS.map(feed => feed.name);
   }, []);
-  const [selectedSources, setSelectedSources] = useState<string[]>(availableSources);
+  
   const [showSavedOnly, setShowSavedOnly] = useState(false);
 
-  // Filter articles based on selected sources
+  // Initialize selected sources if none are set (first time users)
+  useEffect(() => {
+    if (selectedSources.length === 0) {
+      updateSelectedSources(availableSources);
+    }
+  }, [availableSources, selectedSources.length, updateSelectedSources]);
+
+  // Filter articles based on selected sources and saved articles
   const filteredArticles = useMemo(() => {
     let filtered = articles;
     
@@ -29,14 +48,15 @@ function App() {
       );
     }
     
-    // TODO: Filter by saved articles when we implement saved functionality
+    // Filter by saved articles when showing saved only
     if (showSavedOnly) {
-      // For now, just return empty array as we haven't implemented saved articles yet
-      filtered = [];
+      filtered = filtered.filter(article => 
+        savedArticles.includes(article.link)
+      );
     }
     
     return filtered;
-  }, [articles, selectedSources, showSavedOnly]);
+  }, [articles, selectedSources, showSavedOnly, savedArticles]);
 
   const fetchArticles = async () => {
     try {
@@ -69,7 +89,7 @@ function App() {
   };
 
   const handleFilterSources = (sources: string[]) => {
-    setSelectedSources(sources);
+    updateSelectedSources(sources);
   };
 
   const handleViewSaved = () => {
@@ -78,6 +98,16 @@ function App() {
 
   return (
     <div className="app">
+      {/* Storage notification for users with limited storage */}
+      {!cookiesEnabled && (
+        <div className="cookie-notification">
+          <p>
+            🍪 This app uses cookies and browser storage to save your preferences. 
+            Please enable cookies for the best experience.
+          </p>
+        </div>
+      )}
+      
       <header className="header">
         <button
           className="refresh-button"
@@ -96,7 +126,6 @@ function App() {
       </header>
 
       <main className="news-container">
-
         {error && <div className="error">{error}</div>}
 
         {loading && (
@@ -113,9 +142,21 @@ function App() {
           </div>
         )}
 
-        {!loading && filteredArticles.length === 0 && articles.length > 0 && (
+        {!loading && filteredArticles.length === 0 && articles.length > 0 && !showSavedOnly && (
           <div className="error">
-            No articles match your current filters.
+            No articles match your current source filters.
+          </div>
+        )}
+        
+        {!loading && showSavedOnly && savedArticles.length === 0 && (
+          <div className="error">
+            No saved articles yet. Start saving articles you want to read later!
+          </div>
+        )}
+
+        {!loading && showSavedOnly && filteredArticles.length === 0 && savedArticles.length > 0 && (
+          <div className="error">
+            No saved articles match your current source filters.
           </div>
         )}
 
@@ -157,6 +198,13 @@ function App() {
                         by {article.author}
                       </span>
                     )}
+                    <button
+                      className={`save-button ${isArticleSaved(article.link) ? 'saved' : ''}`}
+                      onClick={() => toggleSaveArticle(article.link)}
+                      title={isArticleSaved(article.link) ? 'Remove from saved' : 'Save article'}
+                    >
+                      {isArticleSaved(article.link) ? '⭐' : '☆'}
+                    </button>
                   </div>
                 </div>
 
