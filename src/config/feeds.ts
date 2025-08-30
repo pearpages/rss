@@ -30,5 +30,15 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
     name: 'Al Jazeera',
     url: 'https://www.aljazeera.com/xml/rss/all.xml',
     category: 'News'
+  },
+  {
+    name: 'La Vanguardia',
+    url: 'https://www.lavanguardia.com/rss/home.xml',
+    category: 'News'
+  },
+  {
+    name: 'RAC1',
+    url: 'https://www.rac1.cat/rss/home.xml',
+    category: 'News'
   }
 ];
