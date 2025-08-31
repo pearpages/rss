@@ -9,10 +9,15 @@ class RSSService {
 
   async fetchFeed(feed: RSSFeed): Promise<RSSItem[]> {
     try {
-      // Use RSS2JSON service which is more reliable
-      const rss2jsonUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`;
+      // Use proxy in development, direct API in production
+      const isDevelopment = import.meta.env.DEV;
+      const baseUrl = isDevelopment 
+        ? '/api/rss2json/v1/api.json' 
+        : 'https://api.rss2json.com/v1/api.json';
       
-      console.log(`Fetching ${feed.name} via RSS2JSON...`);
+      const rss2jsonUrl = `${baseUrl}?rss_url=${encodeURIComponent(feed.url)}`;
+      
+      console.log(`Fetching ${feed.name} via RSS2JSON (${isDevelopment ? 'proxy' : 'direct'})...`);
       
       const response = await fetch(rss2jsonUrl);
       if (!response.ok) {
