@@ -125,6 +125,75 @@ class CookieService {
   }
 
   /**
+   * Get ignored articles from localStorage
+   */
+  getIgnoredArticles(): string[] {
+    if (typeof localStorage === 'undefined') return [];
+    try {
+      const ignored = localStorage.getItem('rss_ignored_articles');
+      return ignored ? JSON.parse(ignored) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  /**
+   * Add an article to ignored list in localStorage
+   */
+  ignoreArticle(articleLink: string): void {
+    const ignoredArticles = this.getIgnoredArticles();
+    if (!ignoredArticles.includes(articleLink)) {
+      const updated = [...ignoredArticles, articleLink];
+      try {
+        localStorage.setItem('rss_ignored_articles', JSON.stringify(updated));
+      } catch (error) {
+        console.error('Failed to ignore article:', error);
+      }
+    }
+  }
+
+  /**
+   * Remove an article from ignored list in localStorage
+   */
+  unignoreArticle(articleLink: string): void {
+    const ignoredArticles = this.getIgnoredArticles();
+    const updated = ignoredArticles.filter(link => link !== articleLink);
+    try {
+      localStorage.setItem('rss_ignored_articles', JSON.stringify(updated));
+    } catch (error) {
+      console.error('Failed to unignore article:', error);
+    }
+  }
+
+  /**
+   * Check if an article is ignored
+   */
+  isArticleIgnored(articleLink: string): boolean {
+    return this.getIgnoredArticles().includes(articleLink);
+  }
+
+  /**
+   * Clean up ignored articles that are no longer in the current feed
+   * This prevents the ignored list from growing indefinitely with old articles
+   */
+  cleanupIgnoredArticles(currentArticleLinks: string[]): void {
+    const ignoredArticles = this.getIgnoredArticles();
+    const validIgnoredArticles = ignoredArticles.filter(link => 
+      currentArticleLinks.includes(link)
+    );
+    
+    // Only update if there are articles to remove
+    if (validIgnoredArticles.length !== ignoredArticles.length) {
+      try {
+        localStorage.setItem('rss_ignored_articles', JSON.stringify(validIgnoredArticles));
+        console.log(`Cleaned up ${ignoredArticles.length - validIgnoredArticles.length} old ignored articles`);
+      } catch (error) {
+        console.error('Failed to cleanup ignored articles:', error);
+      }
+    }
+  }
+
+  /**
    * Get theme preference
    */
   getTheme(): 'light' | 'dark' {
@@ -224,6 +293,7 @@ class CookieService {
     hasPreferences: boolean;
     sourcesCount: number;
     savedArticlesCount: number;
+    ignoredArticlesCount: number;
     theme: string;
     lastUpdated: string;
     cookiesEnabled: boolean;
@@ -233,6 +303,7 @@ class CookieService {
       hasPreferences: this.getCookie(this.PREFERENCES_KEY) !== null,
       sourcesCount: prefs.selectedSources.length,
       savedArticlesCount: this.getSavedArticles().length,
+      ignoredArticlesCount: this.getIgnoredArticles().length,
       theme: prefs.theme || 'light',
       lastUpdated: prefs.lastUpdated,
       cookiesEnabled: this.areCookiesEnabled(),
@@ -253,6 +324,11 @@ export const {
   saveArticle,
   unsaveArticle,
   isArticleSaved,
+  getIgnoredArticles,
+  ignoreArticle,
+  unignoreArticle,
+  isArticleIgnored,
+  cleanupIgnoredArticles,
   getTheme,
   saveTheme,
   clearPreferences,

@@ -14,10 +14,15 @@ export const useUserPreferences = () => {
     cookieService.getSavedArticles()
   );
 
+  const [ignoredArticles, setIgnoredArticles] = useState<string[]>(() =>
+    cookieService.getIgnoredArticles()
+  );
+
   // Reload preferences from storage
   const reloadPreferences = useCallback(() => {
     setPreferences(cookieService.getPreferences());
     setSavedArticles(cookieService.getSavedArticles());
+    setIgnoredArticles(cookieService.getIgnoredArticles());
   }, []);
 
   // Update preferences and save to cookies
@@ -64,6 +69,35 @@ export const useUserPreferences = () => {
     return cookieService.isArticleSaved(articleLink);
   }, []);
 
+  // Ignored articles management (localStorage)
+  const ignoreArticle = useCallback((articleLink: string) => {
+    cookieService.ignoreArticle(articleLink);
+    setIgnoredArticles(cookieService.getIgnoredArticles());
+  }, []);
+
+  const unignoreArticle = useCallback((articleLink: string) => {
+    cookieService.unignoreArticle(articleLink);
+    setIgnoredArticles(cookieService.getIgnoredArticles());
+  }, []);
+
+  const toggleIgnoreArticle = useCallback((articleLink: string) => {
+    if (cookieService.isArticleIgnored(articleLink)) {
+      unignoreArticle(articleLink);
+    } else {
+      ignoreArticle(articleLink);
+    }
+  }, [ignoreArticle, unignoreArticle]);
+
+  const isArticleIgnored = useCallback((articleLink: string) => {
+    return cookieService.isArticleIgnored(articleLink);
+  }, []);
+
+  // Clean up ignored articles based on current articles
+  const cleanupIgnoredArticles = useCallback((currentArticleLinks: string[]) => {
+    cookieService.cleanupIgnoredArticles(currentArticleLinks);
+    setIgnoredArticles(cookieService.getIgnoredArticles());
+  }, []);
+
   // Theme management
   const theme = preferences.theme || 'light';
 
@@ -80,6 +114,7 @@ export const useUserPreferences = () => {
     cookieService.clearPreferences();
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem('rss_saved_articles');
+      localStorage.removeItem('rss_ignored_articles');
     }
     reloadPreferences();
   }, [reloadPreferences]);
@@ -89,6 +124,8 @@ export const useUserPreferences = () => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'rss_saved_articles') {
         setSavedArticles(cookieService.getSavedArticles());
+      } else if (e.key === 'rss_ignored_articles') {
+        setIgnoredArticles(cookieService.getIgnoredArticles());
       }
     };
 
@@ -112,6 +149,14 @@ export const useUserPreferences = () => {
     unsaveArticle,
     toggleSaveArticle,
     isArticleSaved,
+    
+    // Ignored articles
+    ignoredArticles,
+    ignoreArticle,
+    unignoreArticle,
+    toggleIgnoreArticle,
+    isArticleIgnored,
+    cleanupIgnoredArticles,
     
     // Theme
     theme,
@@ -158,5 +203,28 @@ export const useSavedArticles = () => {
     unsaveArticle,
     toggleSaveArticle,
     isArticleSaved,
+  };
+};
+
+/**
+ * Simplified hook for just ignored articles
+ */
+export const useIgnoredArticles = () => {
+  const { 
+    ignoredArticles, 
+    ignoreArticle, 
+    unignoreArticle, 
+    toggleIgnoreArticle, 
+    isArticleIgnored,
+    cleanupIgnoredArticles
+  } = useUserPreferences();
+  
+  return {
+    ignoredArticles,
+    ignoreArticle,
+    unignoreArticle,
+    toggleIgnoreArticle,
+    isArticleIgnored,
+    cleanupIgnoredArticles,
   };
 };

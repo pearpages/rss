@@ -289,6 +289,32 @@ body {
   color: #94a3b8;
 }
 
+.ignore-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  color: #94a3b8;
+  margin-left: 0.25rem;
+}
+
+.ignore-button:hover {
+  background-color: #f1f5f9;
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.ignore-button.ignored {
+  color: #ef4444;
+}
+
+.ignore-button.ignored:hover {
+  color: #94a3b8;
+}
+
 .article-description {
   color: #475569;
   font-size: 0.95rem;

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { rssService } from "./services/rssService";
 import { DEFAULT_RSS_FEEDS } from "./config/feeds";
@@ -21,6 +21,10 @@ function App() {
     savedArticles,
     isArticleSaved,
     toggleSaveArticle,
+    ignoredArticles,
+    isArticleIgnored,
+    toggleIgnoreArticle,
+    cleanupIgnoredArticles,
     cookiesEnabled
   } = useUserPreferences();
   
@@ -30,6 +34,32 @@ function App() {
   }, []);
   
   const [showSavedOnly, setShowSavedOnly] = useState(false);
+
+  const fetchArticles = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      console.log("Fetching RSS feeds...");
+      const items = await rssService.fetchMultipleFeeds(DEFAULT_RSS_FEEDS);
+      console.log(`Successfully loaded ${items.length} articles`);
+      setArticles(items);
+
+      // Clean up ignored articles to remove old ones that are no longer in the feed
+      const currentArticleLinks = items.map(item => item.link);
+      cleanupIgnoredArticles(currentArticleLinks);
+
+      if (items.length === 0) {
+        setError(
+          "No articles could be loaded from RSS feeds. This might be a temporary issue with the feed sources."
+        );
+      }
+    } catch (err) {
+      setError("Failed to fetch RSS feeds. Please try again later.");
+      console.error("Error fetching articles:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [cleanupIgnoredArticles]);
 
   // Initialize selected sources if none are set (first time users)
   useEffect(() => {
@@ -56,34 +86,19 @@ function App() {
       );
     }
     
-    return filtered;
-  }, [articles, selectedSources, showSavedOnly, savedArticles]);
-
-  const fetchArticles = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      console.log("Fetching RSS feeds...");
-      const items = await rssService.fetchMultipleFeeds(DEFAULT_RSS_FEEDS);
-      console.log(`Successfully loaded ${items.length} articles`);
-      setArticles(items);
-
-      if (items.length === 0) {
-        setError(
-          "No articles could be loaded from RSS feeds. This might be a temporary issue with the feed sources."
-        );
-      }
-    } catch (err) {
-      setError("Failed to fetch RSS feeds. Please try again later.");
-      console.error("Error fetching articles:", err);
-    } finally {
-      setLoading(false);
+    // Always filter out ignored articles (unless viewing saved articles)
+    if (!showSavedOnly) {
+      filtered = filtered.filter(article => 
+        !ignoredArticles.includes(article.link)
+      );
     }
-  };
+    
+    return filtered;
+  }, [articles, selectedSources, showSavedOnly, savedArticles, ignoredArticles]);
 
   useEffect(() => {
     fetchArticles();
-  }, []);
+  }, [fetchArticles]);
 
   const handleRefresh = () => {
     fetchArticles();
@@ -228,6 +243,13 @@ function App() {
                         title={isArticleSaved(article.link) ? 'Remove from saved' : 'Save article'}
                       >
                         {isArticleSaved(article.link) ? '⭐' : '☆'}
+                      </button>
+                      <button
+                        className={`ignore-button ${isArticleIgnored(article.link) ? 'ignored' : ''}`}
+                        onClick={() => toggleIgnoreArticle(article.link)}
+                        title={isArticleIgnored(article.link) ? 'Show article' : 'Hide article (mark as read)'}
+                      >
+                        {isArticleIgnored(article.link) ? '👁️' : '🙈'}
                       </button>
                     </div>
                   </div>
