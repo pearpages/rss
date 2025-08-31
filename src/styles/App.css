@@ -164,20 +164,28 @@ body {
   max-width: 100%;
 }
 
-/* Article card */
+/* Article card - Mobile first (no cards) */
 .article-card {
-  background: white;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid #e2e8f0;
+  background: transparent;
+  border-radius: 0;
+  margin-bottom: 0;
+  box-shadow: none;
+  overflow: visible;
+  transition: none;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.article-card:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .article-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: none;
+  box-shadow: none;
 }
 
 .article-image {
@@ -407,6 +415,28 @@ body {
     padding: 2rem;
     max-width: 768px;
     margin: 0 auto;
+  }
+  
+  /* Restore card design for larger screens */
+  .article-card {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #e2e8f0;
+    padding-bottom: 0;
+  }
+  
+  .article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .article-card:last-child {
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 1rem;
   }
   
   .article-title {

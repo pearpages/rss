@@ -33,6 +33,7 @@ export function getSourceColor(sourceName: string): string {
     'Al Jazeera': '#06b6d4',      // Cyan
     'La Vanguardia': '#f97316',   // Orange
     'RAC1': '#84cc16',            // Lime
+    'Mundo Deportivo': '#ec4899', // Pink
   };
   
   // Check if we have a direct mapping for this source

@@ -27,6 +27,11 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
   //   category: 'Science'
   // },
   {
+    name: 'Mundo Deportivo',
+    url: 'https://www.mundodeportivo.com/feed/rss/home',
+    category: 'Sports'
+  },
+  {
     name: 'Al Jazeera',
     url: 'https://www.aljazeera.com/xml/rss/all.xml',
     category: 'News'
