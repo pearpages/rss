@@ -7,6 +7,7 @@ interface MenuProps {
   availableSources?: string[];
   selectedSources?: string[];
   showSavedOnly?: boolean;
+  ignoredArticlesCount?: number;
 }
 
 export const Menu = ({ 
@@ -14,7 +15,8 @@ export const Menu = ({
   onViewSaved, 
   availableSources = [], 
   selectedSources = [],
-  showSavedOnly = false
+  showSavedOnly = false,
+  ignoredArticlesCount = 0
 }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -96,8 +98,13 @@ export const Menu = ({
               )}
 
               <div className="menu-section">
-                <div className="menu-item-info">
-                  <small>More features coming soon...</small>
+                <div className="menu-stats">
+                  <div className="menu-stat-item">
+                    <span className="menu-stat-icon">👁️‍🗨️</span>
+                    <span className="menu-stat-text">
+                      {ignoredArticlesCount} article{ignoredArticlesCount !== 1 ? 's' : ''} read/ignored
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

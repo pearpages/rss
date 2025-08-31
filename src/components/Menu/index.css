@@ -192,7 +192,32 @@
 /* Menu Info */
 .menu-item-info {
   padding: 0.75rem 1.5rem;
-  text-align: center;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* Menu Stats */
+.menu-stats {
+  padding: 0.75rem 1.5rem;
+}
+
+.menu-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.menu-stat-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.menu-stat-text {
+  font-weight: 500;
 }
 
 .menu-item-info small {
@@ -223,6 +248,10 @@
   }
   
   .menu-item-info {
+    padding: 0.875rem 2rem;
+  }
+  
+  .menu-stats {
     padding: 0.875rem 2rem;
   }
 }

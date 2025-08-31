@@ -150,6 +150,7 @@ function App() {
           availableSources={availableSources}
           selectedSources={selectedSources}
           showSavedOnly={showSavedOnly}
+          ignoredArticlesCount={ignoredArticles.length}
         />
       </header>
 
