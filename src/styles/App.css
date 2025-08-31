@@ -109,18 +109,6 @@ body {
   margin-left: 8px;
 }
 
-.header-title.clickable {
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.header-title.clickable:hover {
-  opacity: 0.8;
-}
-
 .back-indicator {
   font-size: 0.8rem;
   font-weight: 400;

@@ -138,12 +138,12 @@ function App() {
           {loading ? "Loading..." : "🔄"}
         </button>
         {showSavedOnly ? (
-          <h1 className="header-title clickable" onClick={handleGoToFeeds}>
-            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> RSS News Aggregator <span className="version">v{getAppVersion()}</span>
+          <h1 className="header-title" onClick={handleGoToFeeds}>
+            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> News Aggregator <span className="version">beta v{getAppVersion()}</span>
             <span className="back-indicator">← Back to feeds</span>
           </h1>
         ) : (
-          <h1 className="header-title"><img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> RSS News Aggregator <span className="version">v{getAppVersion()}</span></h1>
+          <h1 className="header-title"><img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> News Aggregator <span className="version">beta v{getAppVersion()}</span></h1>
         )}
         <Menu
           onFilterSources={handleFilterSources}
