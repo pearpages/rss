@@ -40,7 +40,12 @@ A beautiful, mobile-first RSS news aggregator built with React, TypeScript, and 
     - [Automatic Deployment](#automatic-deployment)
     - [Manual Deployment](#manual-deployment)
     - [Custom Domain Setup](#custom-domain-setup)
-  - [📰 RSS Sources](#-rss-sources)
+  - [� Automatic Versioning](#-automatic-versioning)
+    - [📝 Commit Message Format](#-commit-message-format)
+    - [🏷️ Version Tags](#️-version-tags)
+    - [🔧 Manual Version Control](#-manual-version-control)
+    - [📊 Version Display](#-version-display)
+  - [�📰 RSS Sources](#-rss-sources)
     - [Adding New RSS Sources](#adding-new-rss-sources)
   - [🔧 Configuration](#-configuration)
     - [CORS Handling](#cors-handling)
@@ -189,7 +194,78 @@ npm run build    # Build the application
    - Custom domain: `rss.pages.ninja`
    - Enforce HTTPS: ✅
 
-## 📰 RSS Sources
+## � Automatic Versioning
+
+This project uses **automated semantic versioning** based on conventional commit messages. Every push to the main branch automatically:
+
+- Analyzes commit messages to determine version bump type
+- Updates `package.json` version following [Semantic Versioning](https://semver.org/)
+- Creates git tags for releases
+- Builds and deploys with the new version
+
+### 📝 Commit Message Format
+
+Use conventional commit messages to control version bumping:
+
+#### Patch Versions (1.0.0 → 1.0.1)
+*For bug fixes, performance improvements, and minor changes*
+
+```bash
+git commit -m "fix: resolve RSS parsing timeout issue"
+git commit -m "perf: improve image loading performance"
+git commit -m "style: fix mobile header alignment"
+git commit -m "docs: update installation instructions"
+```
+
+#### Minor Versions (1.0.0 → 1.1.0)
+*For new features and enhancements*
+
+```bash
+git commit -m "feat: add dark mode toggle"
+git commit -m "feat(search): implement article search functionality"
+git commit -m "feat(ui): add bookmark management interface"
+```
+
+#### Major Versions (1.0.0 → 2.0.0)
+*For breaking changes that affect existing functionality*
+
+```bash
+git commit -m "feat!: redesign RSS parser API"
+git commit -m "fix!: remove deprecated RSS 1.0 support"
+git commit -m "feat: change data storage format
+
+BREAKING CHANGE: This removes compatibility with previously saved articles"
+```
+
+### 🏷️ Version Tags
+
+Each deployment automatically creates a git tag:
+- `v1.0.1` - Patch release
+- `v1.1.0` - Minor release  
+- `v2.0.0` - Major release
+
+### 🔧 Manual Version Control
+
+If needed, you can manually control versioning:
+
+```bash
+# Bump specific version type
+npm version patch   # 1.0.0 → 1.0.1
+npm version minor   # 1.0.0 → 1.1.0  
+npm version major   # 1.0.0 → 2.0.0
+
+# Set specific version
+npm version 1.2.3
+
+# Push tags after manual versioning
+git push origin main --tags
+```
+
+### 📊 Version Display
+
+The current version is automatically displayed in the app header and can be viewed at [rss.pages.ninja](https://rss.pages.ninja).
+
+## �📰 RSS Sources
 
 The application aggregates content from these sources:
 

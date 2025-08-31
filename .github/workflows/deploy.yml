@@ -8,7 +8,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write  # Changed from read to write to allow version bumping
   pages: write
   id-token: write
 
@@ -25,6 +25,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for versioning
+          token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,6 +37,43 @@ jobs:
           
       - name: Install dependencies
         run: npm ci
+        
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+        
+      - name: Determine version bump type
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        id: version_type
+        run: |
+          # Get the latest commit message
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MSG"
+          
+          # Determine version bump type based on commit message
+          if echo "$COMMIT_MSG" | grep -qE "^feat(\(.+\))?!:|^fix(\(.+\))?!:|^BREAKING CHANGE:|breaking change"; then
+            echo "type=major" >> $GITHUB_OUTPUT
+            echo "🚨 Major version bump (breaking change detected)"
+          elif echo "$COMMIT_MSG" | grep -qE "^feat(\(.+\))?:"; then
+            echo "type=minor" >> $GITHUB_OUTPUT
+            echo "✨ Minor version bump (new feature detected)"
+          elif echo "$COMMIT_MSG" | grep -qE "^fix(\(.+\))?:|^perf(\(.+\))?:"; then
+            echo "type=patch" >> $GITHUB_OUTPUT
+            echo "🐛 Patch version bump (bug fix detected)"
+          else
+            echo "type=patch" >> $GITHUB_OUTPUT
+            echo "📝 Patch version bump (default)"
+          fi
+      
+      - name: Bump version and push tag
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          npm version ${{ steps.version_type.outputs.type }} --no-git-tag-version
+          git add package.json
+          git commit -m "chore: bump version to $(node -p "require('./package.json').version")" || echo "No changes to commit"
+          git tag "v$(node -p "require('./package.json').version")"
+          git push origin main --tags
         
       - name: Build
         run: npm run build

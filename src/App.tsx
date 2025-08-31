@@ -8,6 +8,7 @@ import { LazyImage } from "./components/LazyImage";
 import { Menu } from "./components/Menu";
 import { useUserPreferences } from "./hooks/useUserPreferences";
 import { getSourceColor, isLightColor } from "./utils/colorUtils";
+import { getAppVersion } from "./utils/version";
 
 function App() {
   const [articles, setArticles] = useState<RSSItem[]>([]);
@@ -138,11 +139,11 @@ function App() {
         </button>
         {showSavedOnly ? (
           <h1 className="header-title clickable" onClick={handleGoToFeeds}>
-            📰 RSS News Aggregator
+            📰 RSS News Aggregator <span className="version">v{getAppVersion()}</span>
             <span className="back-indicator">← Back to feeds</span>
           </h1>
         ) : (
-          <h1 className="header-title">📰 RSS News Aggregator</h1>
+          <h1 className="header-title">📰 RSS News Aggregator <span className="version">v{getAppVersion()}</span></h1>
         )}
         <Menu
           onFilterSources={handleFilterSources}
