@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 512 512" role="img" aria-label="RSS Icon">
+  <title>RSS Icon</title>
+  <defs>
+    <linearGradient id="flatGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff7a00"/>
+      <stop offset="100%" stop-color="#ff5e00"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="url(#flatGrad)"/>
+  <circle cx="152" cy="360" r="36" fill="#ffffff"/>
+  <path d="M152 280a80 80 0 0 1 80 80" fill="none" stroke="#ffffff" stroke-width="40" stroke-linecap="round"/>
+  <path d="M152 200a160 160 0 0 1 160 160" fill="none" stroke="#ffffff" stroke-width="40" stroke-linecap="round" opacity="0.95"/>
+</svg>

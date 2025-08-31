@@ -139,11 +139,11 @@ function App() {
         </button>
         {showSavedOnly ? (
           <h1 className="header-title clickable" onClick={handleGoToFeeds}>
-            📰 RSS News Aggregator <span className="version">v{getAppVersion()}</span>
+            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> RSS News Aggregator <span className="version">v{getAppVersion()}</span>
             <span className="back-indicator">← Back to feeds</span>
           </h1>
         ) : (
-          <h1 className="header-title">📰 RSS News Aggregator <span className="version">v{getAppVersion()}</span></h1>
+          <h1 className="header-title"><img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> RSS News Aggregator <span className="version">v{getAppVersion()}</span></h1>
         )}
         <Menu
           onFilterSources={handleFilterSources}
