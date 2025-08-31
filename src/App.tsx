@@ -6,6 +6,7 @@ import type { RSSItem } from "./types/rss";
 import "./styles/App.css";
 import { LazyImage } from "./components/LazyImage";
 import { Menu } from "./components/Menu";
+import { ReaderModal } from "./components/Modal/ReaderModal";
 import { useUserPreferences } from "./hooks/useUserPreferences";
 import { getSourceColor, isLightColor } from "./utils/colorUtils";
 import { getAppVersion } from "./utils/version";
@@ -14,6 +15,10 @@ function App() {
   const [articles, setArticles] = useState<RSSItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Reader modal state
+  const [isReaderModalOpen, setIsReaderModalOpen] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState<RSSItem | null>(null);
   
   // Use the preferences hook
   const {
@@ -117,6 +122,16 @@ function App() {
     setShowSavedOnly(false);
   };
 
+  const handleOpenReaderModal = (article: RSSItem) => {
+    setSelectedArticle(article);
+    setIsReaderModalOpen(true);
+  };
+
+  const handleCloseReaderModal = () => {
+    setIsReaderModalOpen(false);
+    setSelectedArticle(null);
+  };
+
   return (
     <div className="app">
       {/* Storage notification for users with limited storage */}
@@ -210,12 +225,21 @@ function App() {
                 <div className="article-content">
                   <div className="article-header">
                     <h2 className="article-title">
+                      <button
+                        className="article-title-button"
+                        onClick={() => handleOpenReaderModal(article)}
+                        title="Read in reader mode"
+                      >
+                        {article.title}
+                      </button>
                       <a
                         href={article.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="external-link-icon"
+                        title="Open original article"
                       >
-                        {article.title}
+                        🔗
                       </a>
                     </h2>
 
@@ -265,6 +289,14 @@ function App() {
           })}
         </div>
       </main>
+
+      {/* Reader Modal */}
+      <ReaderModal
+        isOpen={isReaderModalOpen}
+        onClose={handleCloseReaderModal}
+        title={selectedArticle?.title}
+        url={selectedArticle?.link}
+      />
     </div>
   );
 }
