@@ -14,10 +14,12 @@ A beautiful, mobile-first RSS news aggregator built with React, TypeScript, and 
 ## 📸 Screenshots
 
 ### Mobile Experience
-*Clean, card-based design optimized for mobile reading*
 
-### Desktop Experience  
-*Responsive layout that scales beautifully to larger screens*
+_Clean, card-based design optimized for mobile reading_
+
+### Desktop Experience
+
+_Responsive layout that scales beautifully to larger screens_
 
 > 📱 **Best viewed on mobile devices** - This app is designed with mobile-first principles for the optimal news reading experience on your phone.
 
@@ -137,22 +139,26 @@ npm run dev
 ### Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/pearpages/rss.git
    cd rss
    ```
 
 2. **Install Node.js version** (if using mise):
+
    ```bash
    mise install
    ```
 
 3. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 4. **Start development server**:
+
    ```bash
    npm run dev
    ```
@@ -161,13 +167,13 @@ npm run dev
 
 ## 📜 Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint code analysis |
-| `npm run deploy` | Build the application |
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | Start development server with hot reload |
+| `npm run build`   | Build for production                     |
+| `npm run preview` | Preview production build locally         |
+| `npm run lint`    | Run ESLint code analysis                 |
+| `npm run deploy`  | Build the application                    |
 
 ## 🌐 Deployment
 
@@ -188,7 +194,6 @@ npm run build    # Build the application
 
 1. **DNS Configuration**:
    - Add a `CNAME` record pointing `rss.pages.ninja` to `pearpages.github.io`
-   
 2. **GitHub Pages Configuration**:
    - Repository Settings → Pages
    - Custom domain: `rss.pages.ninja`
@@ -208,7 +213,8 @@ This project uses **automated semantic versioning** based on conventional commit
 Use conventional commit messages to control version bumping:
 
 #### Patch Versions (1.0.0 → 1.0.1)
-*For bug fixes, performance improvements, and minor changes*
+
+_For bug fixes, performance improvements, and minor changes_
 
 ```bash
 git commit -m "fix: resolve RSS parsing timeout issue"
@@ -218,7 +224,8 @@ git commit -m "docs: update installation instructions"
 ```
 
 #### Minor Versions (1.0.0 → 1.1.0)
-*For new features and enhancements*
+
+_For new features and enhancements_
 
 ```bash
 git commit -m "feat: add dark mode toggle"
@@ -227,7 +234,8 @@ git commit -m "feat(ui): add bookmark management interface"
 ```
 
 #### Major Versions (1.0.0 → 2.0.0)
-*For breaking changes that affect existing functionality*
+
+_For breaking changes that affect existing functionality_
 
 ```bash
 git commit -m "feat!: redesign RSS parser API"
@@ -240,8 +248,9 @@ BREAKING CHANGE: This removes compatibility with previously saved articles"
 ### 🏷️ Version Tags
 
 Each deployment automatically creates a git tag:
+
 - `v1.0.1` - Patch release
-- `v1.1.0` - Minor release  
+- `v1.1.0` - Minor release
 - `v2.0.0` - Major release
 
 ### 🔧 Manual Version Control
@@ -251,7 +260,7 @@ If needed, you can manually control versioning:
 ```bash
 # Bump specific version type
 npm version patch   # 1.0.0 → 1.0.1
-npm version minor   # 1.0.0 → 1.1.0  
+npm version minor   # 1.0.0 → 1.1.0
 npm version major   # 1.0.0 → 2.0.0
 
 # Set specific version
@@ -269,13 +278,13 @@ The current version is automatically displayed in the app header and can be view
 
 The application aggregates content from these sources:
 
-| Source | Category | Feed URL |
-|--------|----------|----------|
-| BBC News | News | `http://feeds.bbci.co.uk/news/rss.xml` |
-| TechCrunch | Technology | `https://techcrunch.com/feed/` |
-| Hacker News | Technology | `https://hnrss.org/frontpage` |
-| The Guardian | News | `https://www.theguardian.com/international/rss` |
-| Dev.to | Development | `https://dev.to/feed` |
+| Source       | Category    | Feed URL                                        |
+| ------------ | ----------- | ----------------------------------------------- |
+| BBC News     | News        | `http://feeds.bbci.co.uk/news/rss.xml`          |
+| TechCrunch   | Technology  | `https://techcrunch.com/feed/`                  |
+| Hacker News  | Technology  | `https://hnrss.org/frontpage`                   |
+| The Guardian | News        | `https://www.theguardian.com/international/rss` |
+| Dev.to       | Development | `https://dev.to/feed`                           |
 
 ### Adding New RSS Sources
 
@@ -287,8 +296,8 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
   {
     name: 'Your News Source',
     url: 'https://example.com/rss.xml',
-    category: 'News'
-  }
+    category: 'News',
+  },
 ];
 ```
 
@@ -301,6 +310,7 @@ RSS feeds are fetched through RSS2JSON proxy service since most RSS feeds don't 
 ### Mobile Optimization
 
 The application uses:
+
 - Responsive CSS Grid and Flexbox layouts
 - Touch-friendly interactive elements
 - Optimized typography for mobile reading
@@ -310,7 +320,7 @@ The application uses:
 ### Image Features
 
 - **Smart Image Extraction**: Automatically detects images from RSS feed items
-- **Multiple Sources**: Supports thumbnail, enclosure, and HTML description images  
+- **Multiple Sources**: Supports thumbnail, enclosure, and HTML description images
 - **Lazy Loading**: Images load only when entering viewport using Intersection Observer
 - **Error Handling**: Graceful fallback to placeholder when images fail to load
 - **Performance**: Reduces initial page load and bandwidth usage

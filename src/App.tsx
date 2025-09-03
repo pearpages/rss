@@ -1,25 +1,26 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { formatDistanceToNow } from "date-fns";
-import { rssService } from "./services/rssService";
-import { DEFAULT_RSS_FEEDS } from "./config/feeds";
-import type { RSSItem } from "./types/rss";
-import "./styles/App.css";
-import { LazyImage } from "./components/LazyImage";
-import { Menu } from "./components/Menu";
-import { ReaderModal } from "./components/Modal/ReaderModal";
-import { useUserPreferences } from "./hooks/useUserPreferences";
-import { getSourceColor, isLightColor } from "./utils/colorUtils";
-import { getAppVersion } from "./utils/version";
+import { useState, useEffect, useMemo } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import { DEFAULT_RSS_FEEDS } from './config/feeds';
+import type { RSSItem } from './types/rss';
+import './styles/App.css';
+import { LazyImage } from './components/LazyImage';
+import { Menu } from './components/Menu';
+import { ReaderModal } from './components/Modal/ReaderModal';
+import { useUserPreferences } from './hooks/useUserPreferences';
+import { getSourceColor, isLightColor } from './utils/colorUtils';
+import { getAppVersion } from './utils/version';
+import { CookieNotification } from './components/CookieNotification';
+import { useFetchArticles } from './services/useFetchArticles';
+import { useCleanupIgnoredArticles } from './services/useCleanupArticles';
 
 function App() {
-  const [articles, setArticles] = useState<RSSItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  
+  const { articles, loading, error, fetchArticles } = useFetchArticles();
+  useCleanupIgnoredArticles(articles);
+
   // Reader modal state
   const [isReaderModalOpen, setIsReaderModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<RSSItem | null>(null);
-  
+
   // Use the preferences hook
   const {
     selectedSources,
@@ -30,42 +31,14 @@ function App() {
     ignoredArticles,
     isArticleIgnored,
     toggleIgnoreArticle,
-    cleanupIgnoredArticles,
-    cookiesEnabled
   } = useUserPreferences();
-  
+
   // Get unique source names from feeds
   const availableSources = useMemo(() => {
-    return DEFAULT_RSS_FEEDS.map(feed => feed.name);
+    return DEFAULT_RSS_FEEDS.map((feed) => feed.name);
   }, []);
-  
+
   const [showSavedOnly, setShowSavedOnly] = useState(false);
-
-  const fetchArticles = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      console.log("Fetching RSS feeds...");
-      const items = await rssService.fetchMultipleFeeds(DEFAULT_RSS_FEEDS);
-      console.log(`Successfully loaded ${items.length} articles`);
-      setArticles(items);
-
-      // Clean up ignored articles to remove old ones that are no longer in the feed
-      const currentArticleLinks = items.map(item => item.link);
-      cleanupIgnoredArticles(currentArticleLinks);
-
-      if (items.length === 0) {
-        setError(
-          "No articles could be loaded from RSS feeds. This might be a temporary issue with the feed sources."
-        );
-      }
-    } catch (err) {
-      setError("Failed to fetch RSS feeds. Please try again later.");
-      console.error("Error fetching articles:", err);
-    } finally {
-      setLoading(false);
-    }
-  }, [cleanupIgnoredArticles]);
 
   // Initialize selected sources if none are set (first time users)
   useEffect(() => {
@@ -77,30 +50,36 @@ function App() {
   // Filter articles based on selected sources and saved articles
   const filteredArticles = useMemo(() => {
     let filtered = articles;
-    
+
     // Filter by selected sources (if any are selected)
     if (selectedSources.length > 0) {
-      filtered = filtered.filter(article => 
+      filtered = filtered.filter((article) =>
         selectedSources.includes(article.sourceName)
       );
     }
-    
+
     // Filter by saved articles when showing saved only
     if (showSavedOnly) {
-      filtered = filtered.filter(article => 
+      filtered = filtered.filter((article) =>
         savedArticles.includes(article.link)
       );
     }
-    
+
     // Always filter out ignored articles (unless viewing saved articles)
     if (!showSavedOnly) {
-      filtered = filtered.filter(article => 
-        !ignoredArticles.includes(article.link)
+      filtered = filtered.filter(
+        (article) => !ignoredArticles.includes(article.link)
       );
     }
-    
+
     return filtered;
-  }, [articles, selectedSources, showSavedOnly, savedArticles, ignoredArticles]);
+  }, [
+    articles,
+    selectedSources,
+    showSavedOnly,
+    savedArticles,
+    ignoredArticles,
+  ]);
 
   useEffect(() => {
     fetchArticles();
@@ -134,31 +113,29 @@ function App() {
 
   return (
     <div className="app">
-      {/* Storage notification for users with limited storage */}
-      {!cookiesEnabled && (
-        <div className="cookie-notification">
-          <p>
-            🍪 This app uses cookies and browser storage to save your preferences. 
-            Please enable cookies for the best experience.
-          </p>
-        </div>
-      )}
-      
+      <CookieNotification />
+
       <header className="header">
         <button
           className="refresh-button"
           onClick={handleRefresh}
           disabled={loading}
         >
-          {loading ? "Loading..." : "🔄"}
+          {loading ? 'Loading...' : '🔄'}
         </button>
         {showSavedOnly ? (
           <h1 className="header-title" onClick={handleGoToFeeds}>
-            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> News Aggregator <span className="version">beta v{getAppVersion()}</span>
+            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" />{' '}
+            News Aggregator{' '}
+            <span className="version">beta v{getAppVersion()}</span>
             <span className="back-indicator">← Back to feeds</span>
           </h1>
         ) : (
-          <h1 className="header-title"><img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> News Aggregator <span className="version">beta v{getAppVersion()}</span></h1>
+          <h1 className="header-title">
+            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" />{' '}
+            News Aggregator{' '}
+            <span className="version">beta v{getAppVersion()}</span>
+          </h1>
         )}
         <Menu
           onFilterSources={handleFilterSources}
@@ -187,30 +164,39 @@ function App() {
           </div>
         )}
 
-        {!loading && filteredArticles.length === 0 && articles.length > 0 && !showSavedOnly && (
-          <div className="error">
-            No articles match your current source filters.
-          </div>
-        )}
-        
+        {!loading &&
+          filteredArticles.length === 0 &&
+          articles.length > 0 &&
+          !showSavedOnly && (
+            <div className="error">
+              No articles match your current source filters.
+            </div>
+          )}
+
         {!loading && showSavedOnly && savedArticles.length === 0 && (
           <div className="error">
             No saved articles yet. Start saving articles you want to read later!
           </div>
         )}
 
-        {!loading && showSavedOnly && filteredArticles.length === 0 && savedArticles.length > 0 && (
-          <div className="error">
-            No saved articles match your current source filters.
-          </div>
-        )}
+        {!loading &&
+          showSavedOnly &&
+          filteredArticles.length === 0 &&
+          savedArticles.length > 0 && (
+            <div className="error">
+              No saved articles match your current source filters.
+            </div>
+          )}
 
         <div className="articles-list">
           {filteredArticles.map((article, index) => {
             const sourceColor = getSourceColor(article.sourceName);
-            
+
             return (
-              <article key={`${article.link}-${index}`} className="article-card">
+              <article
+                key={`${article.link}-${index}`}
+                className="article-card"
+              >
                 {article.image && (
                   <LazyImage
                     src={article.image}
@@ -244,11 +230,13 @@ function App() {
                     </h2>
 
                     <div className="article-meta">
-                      <span 
+                      <span
                         className="source-tag"
                         style={{
                           backgroundColor: sourceColor,
-                          color: isLightColor(sourceColor) ? '#1e293b' : 'white'
+                          color: isLightColor(sourceColor)
+                            ? '#1e293b'
+                            : 'white',
                         }}
                       >
                         {article.sourceName}
@@ -266,14 +254,22 @@ function App() {
                       <button
                         className={`save-button ${isArticleSaved(article.link) ? 'saved' : ''}`}
                         onClick={() => toggleSaveArticle(article.link)}
-                        title={isArticleSaved(article.link) ? 'Remove from saved' : 'Save article'}
+                        title={
+                          isArticleSaved(article.link)
+                            ? 'Remove from saved'
+                            : 'Save article'
+                        }
                       >
                         {isArticleSaved(article.link) ? '⭐' : '☆'}
                       </button>
                       <button
                         className={`ignore-button ${isArticleIgnored(article.link) ? 'ignored' : ''}`}
                         onClick={() => toggleIgnoreArticle(article.link)}
-                        title={isArticleIgnored(article.link) ? 'Show article' : 'Hide article (mark as read)'}
+                        title={
+                          isArticleIgnored(article.link)
+                            ? 'Show article'
+                            : 'Hide article (mark as read)'
+                        }
                       >
                         {isArticleIgnored(article.link) ? '👁️' : '🙈'}
                       </button>
@@ -290,7 +286,6 @@ function App() {
         </div>
       </main>
 
-      {/* Reader Modal */}
       <ReaderModal
         isOpen={isReaderModalOpen}
         onClose={handleCloseReaderModal}

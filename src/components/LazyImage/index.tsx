@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useIsInView } from "./useIsInView";
-import "./index.css";
+import { useState } from 'react';
+import { useIsInView } from './useIsInView';
+import './index.css';
 
 // Lazy Image Component with Intersection Observer
 const LazyImage: React.FC<{
@@ -26,8 +26,8 @@ const LazyImage: React.FC<{
   return (
     <div
       ref={imgRef}
-      className={`lazy-image ${isLoaded ? "lazy-image--loaded" : ""} ${
-        isInView && !isLoaded ? "lazy-image--loading" : ""
+      className={`lazy-image ${isLoaded ? 'lazy-image--loaded' : ''} ${
+        isInView && !isLoaded ? 'lazy-image--loading' : ''
       } ${className}`}
     >
       {isInView && (
@@ -35,7 +35,7 @@ const LazyImage: React.FC<{
           src={src}
           alt={alt}
           className={`lazy-image__img ${
-            isLoaded ? "lazy-image__img--loaded" : ""
+            isLoaded ? 'lazy-image__img--loaded' : ''
           }`}
           onLoad={() => setIsLoaded(true)}
           onError={handleImageError}

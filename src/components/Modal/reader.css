@@ -142,28 +142,28 @@
   .modal__article {
     padding: 1rem;
   }
-  
+
   .modal__article-title {
     font-size: 1.5rem;
   }
-  
+
   .modal__article-meta {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .modal__article-content {
     font-size: 1rem;
   }
-  
+
   .modal__article-content img {
     max-height: 250px !important;
   }
-  
+
   .modal__article-image img {
     max-height: 200px !important;
   }
-  
+
   .modal__article-footer {
     margin: 1rem -1rem 0 -1rem;
     padding: 1rem;

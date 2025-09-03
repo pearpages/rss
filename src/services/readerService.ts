@@ -31,25 +31,27 @@ class ReaderService {
   private readonly APIs: ReaderAPI[] = [
     {
       name: 'AllOrigins CORS Proxy',
-      url: (url: string) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+      url: (url: string) =>
+        `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
       headers: {},
       parser: this.parseWithAllOrigins.bind(this),
-      retryDelay: 30000 // 30 seconds before retry
+      retryDelay: 30000, // 30 seconds before retry
     },
     {
       name: 'JSONProxy (Backup)',
-      url: (url: string) => `https://jsonp.afeld.me/?url=${encodeURIComponent(url)}`,
+      url: (url: string) =>
+        `https://jsonp.afeld.me/?url=${encodeURIComponent(url)}`,
       headers: {},
       parser: this.parseWithJSONProxy.bind(this),
-      retryDelay: 60000 // 1 minute before retry
+      retryDelay: 60000, // 1 minute before retry
     },
     {
       name: 'CORS.sh (Alternative)',
       url: (url: string) => `https://cors.sh/${url}`,
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
       parser: this.parseDirectHTML.bind(this),
-      retryDelay: 45000 // 45 seconds before retry
-    }
+      retryDelay: 45000, // 45 seconds before retry
+    },
   ];
 
   async extractArticle(url: string): Promise<ReaderResult> {
@@ -61,12 +63,14 @@ class ReaderService {
     if (timeSinceLastRequest < this.REQUEST_DELAY) {
       const waitTime = this.REQUEST_DELAY - timeSinceLastRequest;
       console.log(`⏱️ Rate limiting: waiting ${waitTime}ms`);
-      await new Promise(resolve => setTimeout(resolve, waitTime));
+      await new Promise((resolve) => setTimeout(resolve, waitTime));
     }
     this.lastRequestTime = Date.now();
 
     // Filter out recently failed APIs
-    const availableAPIs = this.APIs.filter(api => !this.failedAPIs.has(api.name));
+    const availableAPIs = this.APIs.filter(
+      (api) => !this.failedAPIs.has(api.name)
+    );
     const apisToTry = availableAPIs.length > 0 ? availableAPIs : this.APIs;
 
     // Try each available API
@@ -78,18 +82,18 @@ class ReaderService {
           title: result.title,
           contentLength: result.content.length,
           success: result.success,
-          error: result.error
+          error: result.error,
         });
-        
+
         // Remove from failed list on success
         this.failedAPIs.delete(api.name);
-        
+
         if (result.success) {
           return result;
         }
       } catch (error) {
         console.warn(`❌ ${api.name} failed:`, error);
-        
+
         // Mark API as failed temporarily
         this.failedAPIs.add(api.name);
         if (api.retryDelay) {
@@ -98,7 +102,7 @@ class ReaderService {
             console.log(`🔄 ${api.name} retry timeout expired`);
           }, api.retryDelay);
         }
-        
+
         continue;
       }
     }
@@ -110,15 +114,17 @@ class ReaderService {
 
   private async tryAPI(api: ReaderAPI, url: string): Promise<ReaderResult> {
     console.log(`🌐 Fetching from: ${api.url(url)}`);
-    
+
     const response = await fetch(api.url(url), {
       headers: {
-        'Accept': 'application/json',
-        ...api.headers
-      }
+        Accept: 'application/json',
+        ...api.headers,
+      },
     });
 
-    console.log(`📡 Response status: ${response.status} ${response.statusText}`);
+    console.log(
+      `📡 Response status: ${response.status} ${response.statusText}`
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -128,15 +134,18 @@ class ReaderService {
     console.log(`📦 Data received:`, {
       hasContents: !!(data as Record<string, unknown>).contents,
       dataType: typeof data,
-      keys: Object.keys(data as Record<string, unknown>)
+      keys: Object.keys(data as Record<string, unknown>),
     });
-    
+
     return api.parser(data, url);
   }
 
-  private parseWithAllOrigins(data: unknown, originalUrl: string): ReaderResult {
+  private parseWithAllOrigins(
+    data: unknown,
+    originalUrl: string
+  ): ReaderResult {
     const parsed = data as Record<string, unknown>;
-    
+
     if (!parsed.contents) {
       throw new Error('No HTML content received from AllOrigins');
     }
@@ -177,7 +186,7 @@ class ReaderService {
       publishedDate,
       siteName,
       imageUrl,
-      success: true
+      success: true,
     };
   }
 
@@ -187,7 +196,7 @@ class ReaderService {
       /<title[^>]*>([^<]+)<\/title>/i,
       /<h1[^>]*>([^<]+)<\/h1>/i,
       /<meta property="og:title" content="([^"]+)"/i,
-      /<meta name="title" content="([^"]+)"/i
+      /<meta name="title" content="([^"]+)"/i,
     ];
 
     for (const pattern of titlePatterns) {
@@ -205,7 +214,7 @@ class ReaderService {
       /<meta name="author" content="([^"]+)"/i,
       /<meta property="article:author" content="([^"]+)"/i,
       /<span[^>]*class="[^"]*author[^"]*"[^>]*>([^<]+)</i,
-      /<div[^>]*class="[^"]*byline[^"]*"[^>]*>.*?by\s+([^<]+)</i
+      /<div[^>]*class="[^"]*byline[^"]*"[^>]*>.*?by\s+([^<]+)</i,
     ];
 
     for (const pattern of authorPatterns) {
@@ -223,7 +232,7 @@ class ReaderService {
       /<meta property="article:published_time" content="([^"]+)"/i,
       /<meta name="date" content="([^"]+)"/i,
       /<time[^>]*datetime="([^"]+)"/i,
-      /<meta property="og:updated_time" content="([^"]+)"/i
+      /<meta property="og:updated_time" content="([^"]+)"/i,
     ];
 
     for (const pattern of datePatterns) {
@@ -236,10 +245,13 @@ class ReaderService {
     return undefined;
   }
 
-  private extractSiteName(html: string, originalUrl: string): string | undefined {
+  private extractSiteName(
+    html: string,
+    originalUrl: string
+  ): string | undefined {
     const siteNamePatterns = [
       /<meta property="og:site_name" content="([^"]+)"/i,
-      /<meta name="application-name" content="([^"]+)"/i
+      /<meta name="application-name" content="([^"]+)"/i,
     ];
 
     for (const pattern of siteNamePatterns) {
@@ -257,11 +269,14 @@ class ReaderService {
     }
   }
 
-  private extractMainImage(html: string, originalUrl: string): string | undefined {
+  private extractMainImage(
+    html: string,
+    originalUrl: string
+  ): string | undefined {
     const imagePatterns = [
       /<meta property="og:image" content="([^"]+)"/i,
       /<meta name="twitter:image" content="([^"]+)"/i,
-      /<link rel="image_src" href="([^"]+)"/i
+      /<link rel="image_src" href="([^"]+)"/i,
     ];
 
     for (const pattern of imagePatterns) {
@@ -288,7 +303,7 @@ class ReaderService {
   private extractMainContent(html: string): string {
     // Try to find the main content area
     let content = '';
-    
+
     // Try article tag first
     const articleMatch = html.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
     if (articleMatch) {
@@ -304,9 +319,9 @@ class ReaderService {
           /<div[^>]*class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
           /<div[^>]*class="[^"]*article[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
           /<div[^>]*class="[^"]*post[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
-          /<div[^>]*id="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i
+          /<div[^>]*id="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
         ];
-        
+
         for (const pattern of contentPatterns) {
           const match = html.match(pattern);
           if (match) {
@@ -314,7 +329,7 @@ class ReaderService {
             break;
           }
         }
-        
+
         // Final fallback: extract all paragraphs
         if (!content) {
           const paragraphs = html.match(/<p[^>]*>[\s\S]*?<\/p>/gi);
@@ -329,27 +344,29 @@ class ReaderService {
   }
 
   private cleanHtmlPreserveFormatting(html: string): string {
-    return html
-      // Remove scripts and styles completely
-      .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-      .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
-      // Remove comments
-      .replace(/<!--[\s\S]*?-->/g, '')
-      // Remove unwanted elements but keep their content
-      .replace(/<(nav|header|footer|aside|form)[^>]*>[\s\S]*?<\/\1>/gi, '')
-      // Remove ads and social media
-      .replace(/<div[^>]*class="[^"]*ad[^"]*"[^>]*>[\s\S]*?<\/div>/gi, '')
-      .replace(/<div[^>]*class="[^"]*social[^"]*"[^>]*>[\s\S]*?<\/div>/gi, '')
-      // Clean up attributes but preserve structure
-      .replace(/<([^>]+)\s+class="[^"]*"([^>]*)>/gi, '<$1$2>')
-      .replace(/<([^>]+)\s+id="[^"]*"([^>]*)>/gi, '<$1$2>')
-      .replace(/<([^>]+)\s+style="[^"]*"([^>]*)>/gi, '<$1$2>')
-      // Remove empty attributes
-      .replace(/\s+>/g, '>')
-      // Clean up whitespace
-      .replace(/\n\s*\n/g, '\n')
-      .replace(/\s+/g, ' ')
-      .trim();
+    return (
+      html
+        // Remove scripts and styles completely
+        .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+        .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+        // Remove comments
+        .replace(/<!--[\s\S]*?-->/g, '')
+        // Remove unwanted elements but keep their content
+        .replace(/<(nav|header|footer|aside|form)[^>]*>[\s\S]*?<\/\1>/gi, '')
+        // Remove ads and social media
+        .replace(/<div[^>]*class="[^"]*ad[^"]*"[^>]*>[\s\S]*?<\/div>/gi, '')
+        .replace(/<div[^>]*class="[^"]*social[^"]*"[^>]*>[\s\S]*?<\/div>/gi, '')
+        // Clean up attributes but preserve structure
+        .replace(/<([^>]+)\s+class="[^"]*"([^>]*)>/gi, '<$1$2>')
+        .replace(/<([^>]+)\s+id="[^"]*"([^>]*)>/gi, '<$1$2>')
+        .replace(/<([^>]+)\s+style="[^"]*"([^>]*)>/gi, '<$1$2>')
+        // Remove empty attributes
+        .replace(/\s+>/g, '>')
+        // Clean up whitespace
+        .replace(/\n\s*\n/g, '\n')
+        .replace(/\s+/g, ' ')
+        .trim()
+    );
   }
 
   private cleanText(text: string): string {
@@ -366,36 +383,44 @@ class ReaderService {
 
   private createExcerpt(content: string, maxLength: number = 200): string {
     if (!content) return '';
-    
+
     const cleaned = content.replace(/\s+/g, ' ').trim();
     if (cleaned.length <= maxLength) return cleaned;
-    
+
     return cleaned.substring(0, maxLength).replace(/\s+\S*$/, '') + '...';
   }
 
   private createFallbackResult(url: string): ReaderResult {
     const domain = new URL(url).hostname.replace('www.', '');
-    
+
     // Check if this is a known problematic site
     const problematicSites = [
-      'cnn.com', 'bbc.com', 'nytimes.com', 'wsj.com', 
-      'washingtonpost.com', 'ft.com', 'bloomberg.com'
+      'cnn.com',
+      'bbc.com',
+      'nytimes.com',
+      'wsj.com',
+      'washingtonpost.com',
+      'ft.com',
+      'bloomberg.com',
     ];
-    
-    const isProblematicSite = problematicSites.some(site => domain.includes(site));
-    const reason = isProblematicSite 
+
+    const isProblematicSite = problematicSites.some((site) =>
+      domain.includes(site)
+    );
+    const reason = isProblematicSite
       ? 'This news site uses advanced content protection'
       : 'Content extraction temporarily unavailable';
-    
+
     return {
       title: 'Reader Mode Unavailable',
       content: `
         <div style="text-align: center; padding: 2rem; max-width: 500px; margin: 0 auto;">
           <h3>� ${reason}</h3>
           <p><strong>${domain}</strong> cannot be displayed in reader mode.</p>
-          ${isProblematicSite ? 
-            '<p><small>Major news sites often block content extraction to protect their business model.</small></p>' :
-            '<p><small>This might be temporary due to rate limiting or technical issues.</small></p>'
+          ${
+            isProblematicSite
+              ? '<p><small>Major news sites often block content extraction to protect their business model.</small></p>'
+              : '<p><small>This might be temporary due to rate limiting or technical issues.</small></p>'
           }
           <div style="margin: 2rem 0;">
             <a href="${url}" target="_blank" rel="noopener noreferrer" 
@@ -412,7 +437,7 @@ class ReaderService {
       `,
       excerpt: `Article from ${domain} - content protection active`,
       success: false,
-      error: reason
+      error: reason,
     };
   }
 }

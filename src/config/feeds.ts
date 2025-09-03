@@ -4,7 +4,7 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
   {
     name: 'BBC News',
     url: 'https://feeds.bbci.co.uk/news/rss.xml',
-    category: 'News'
+    category: 'News',
   },
   // {
   //   name: 'Hacker News',
@@ -14,7 +14,7 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
   {
     name: 'The Guardian',
     url: 'https://www.theguardian.com/international/rss',
-    category: 'News'
+    category: 'News',
   },
   // {
   //   name: 'Dev.to',
@@ -29,21 +29,21 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
   {
     name: 'Mundo Deportivo',
     url: 'https://www.mundodeportivo.com/feed/rss/home',
-    category: 'Sports'
+    category: 'Sports',
   },
   {
     name: 'Al Jazeera',
     url: 'https://www.aljazeera.com/xml/rss/all.xml',
-    category: 'News'
+    category: 'News',
   },
   {
     name: 'La Vanguardia',
     url: 'https://www.lavanguardia.com/rss/home.xml',
-    category: 'News'
+    category: 'News',
   },
   {
     name: 'RAC1',
     url: 'https://www.rac1.cat/rss/home.xml',
-    category: 'News'
-  }
+    category: 'News',
+  },
 ];

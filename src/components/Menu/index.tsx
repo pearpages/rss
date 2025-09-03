@@ -10,13 +10,13 @@ interface MenuProps {
   ignoredArticlesCount?: number;
 }
 
-export const Menu = ({ 
-  onFilterSources, 
-  onViewSaved, 
-  availableSources = [], 
+export const Menu = ({
+  onFilterSources,
+  onViewSaved,
+  availableSources = [],
   selectedSources = [],
   showSavedOnly = false,
-  ignoredArticlesCount = 0
+  ignoredArticlesCount = 0,
 }: MenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,11 +30,11 @@ export const Menu = ({
 
   const handleSourceToggle = (sourceName: string) => {
     if (!onFilterSources) return;
-    
+
     const newSelectedSources = selectedSources.includes(sourceName)
-      ? selectedSources.filter(s => s !== sourceName)
+      ? selectedSources.filter((s) => s !== sourceName)
       : [...selectedSources, sourceName];
-    
+
     onFilterSources(newSelectedSources);
   };
 
@@ -45,7 +45,7 @@ export const Menu = ({
 
   return (
     <>
-      <button 
+      <button
         className="menu-trigger"
         onClick={toggleMenu}
         aria-label="Open menu"
@@ -60,7 +60,7 @@ export const Menu = ({
           <div className="menu-panel">
             <div className="menu-header">
               <h3>Menu</h3>
-              <button 
+              <button
                 className="menu-close"
                 onClick={closeMenu}
                 aria-label="Close menu"
@@ -71,7 +71,7 @@ export const Menu = ({
 
             <div className="menu-content">
               <div className="menu-section">
-                <button 
+                <button
                   className={`menu-item ${showSavedOnly ? 'active' : ''}`}
                   onClick={handleViewSaved}
                 >
@@ -102,7 +102,8 @@ export const Menu = ({
                   <div className="menu-stat-item">
                     <span className="menu-stat-icon">👁️‍🗨️</span>
                     <span className="menu-stat-text">
-                      {ignoredArticlesCount} article{ignoredArticlesCount !== 1 ? 's' : ''} read/ignored
+                      {ignoredArticlesCount} article
+                      {ignoredArticlesCount !== 1 ? 's' : ''} read/ignored
                     </span>
                   </div>
                 </div>

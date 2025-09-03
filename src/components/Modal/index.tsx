@@ -22,7 +22,9 @@ export const Modal: React.FC<ModalProps> = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [errorType, setErrorType] = useState<'network' | 'blocked' | 'unknown'>('unknown');
+  const [errorType, setErrorType] = useState<'network' | 'blocked' | 'unknown'>(
+    'unknown'
+  );
   const [isLoadingProxy, setIsLoadingProxy] = useState(false);
   const [proxiedContent, setProxiedContent] = useState<string | null>(null);
 
@@ -72,46 +74,48 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   const handleIframeError = () => {
-    console.log('🚫 Iframe failed to load (X-Frame-Options blocked), will try alternative loading method');
+    console.log(
+      '🚫 Iframe failed to load (X-Frame-Options blocked), will try alternative loading method'
+    );
     setHasError(true);
     setIsLoaded(false);
     setErrorType('blocked');
-    
+
     // Show user we're trying an alternative immediately
     setIsLoadingProxy(true);
-    
-   
   };
-
-
 
   const getErrorMessage = () => {
     if (isLoadingProxy) {
       return {
         title: 'Loading Alternative View',
-        message: 'The original site blocked embedding, trying to load content through a proxy...',
-        icon: '🔄'
+        message:
+          'The original site blocked embedding, trying to load content through a proxy...',
+        icon: '🔄',
       };
     }
-    
+
     switch (errorType) {
       case 'blocked':
         return {
           title: 'Content Blocked',
-          message: 'This website doesn\'t allow embedding. We\'re automatically trying an alternative loading method.',
-          icon: '🚫'
+          message:
+            "This website doesn't allow embedding. We're automatically trying an alternative loading method.",
+          icon: '🚫',
         };
       case 'network':
         return {
           title: 'Network Error',
-          message: 'Failed to load the content. Please check your internet connection and try again.',
-          icon: '🌐'
+          message:
+            'Failed to load the content. Please check your internet connection and try again.',
+          icon: '🌐',
         };
       default:
         return {
           title: 'Loading Failed',
-          message: 'Could not load the content. Try the alternative loading method or open in a new tab.',
-          icon: '⚠️'
+          message:
+            'Could not load the content. Try the alternative loading method or open in a new tab.',
+          icon: '⚠️',
         };
     }
   };
@@ -120,27 +124,24 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div className="modal" onClick={handleBackdropClick}>
-      <div 
-        className="modal__content" 
-        ref={modalRef}
-      >
+      <div className="modal__content" ref={modalRef}>
         {/* Header - only show if explicitly requested or if there's a title */}
         {(showHeader || title) && (
           <div className="modal__header">
             {title && <h2 className="modal__title">{title}</h2>}
-            <button 
-              className="modal__close" 
+            <button
+              className="modal__close"
               onClick={onClose}
               aria-label="Close modal"
             >
-              <svg 
-                width="16" 
-                height="16" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2.5" 
-                strokeLinecap="round" 
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
                 strokeLinejoin="round"
               >
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -152,19 +153,19 @@ export const Modal: React.FC<ModalProps> = ({
 
         {/* Floating close button for headerless modal */}
         {!showHeader && !title && (
-          <button 
-            className="modal__close-floating" 
+          <button
+            className="modal__close-floating"
             onClick={onClose}
             aria-label="Close modal"
           >
-            <svg 
-              width="20" 
-              height="20" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
               strokeLinejoin="round"
             >
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -182,10 +183,9 @@ export const Modal: React.FC<ModalProps> = ({
                 <div className="modal__loading">
                   <div className="modal__spinner"></div>
                   <p>
-                    {isLoadingProxy 
-                      ? '🔄 Site blocked embedding, trying alternative loading...' 
-                      : 'Loading content...'
-                    }
+                    {isLoadingProxy
+                      ? '🔄 Site blocked embedding, trying alternative loading...'
+                      : 'Loading content...'}
                   </p>
                 </div>
               ) : null}
@@ -193,11 +193,13 @@ export const Modal: React.FC<ModalProps> = ({
               {/* Error state */}
               {hasError && !isLoadingProxy && (
                 <div className="modal__error">
-                  <div className="modal__error-icon">{getErrorMessage().icon}</div>
+                  <div className="modal__error-icon">
+                    {getErrorMessage().icon}
+                  </div>
                   <h3>{getErrorMessage().title}</h3>
                   <p>{getErrorMessage().message}</p>
                   <div className="modal__error-actions">
-                    <button 
+                    <button
                       className="modal__retry-btn"
                       onClick={() => {
                         setHasError(false);
@@ -213,7 +215,9 @@ export const Modal: React.FC<ModalProps> = ({
                       onClick={() => {}}
                       disabled={isLoadingProxy}
                     >
-                      {isLoadingProxy ? 'Loading...' : 'Try Alternative Loading'}
+                      {isLoadingProxy
+                        ? 'Loading...'
+                        : 'Try Alternative Loading'}
                     </button>
                     <a
                       href={src}

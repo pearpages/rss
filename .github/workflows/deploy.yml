@@ -2,20 +2,20 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: write  # Changed from read to write to allow version bumping
+  contents: write # Changed from read to write to allow version bumping
   pages: write
   id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -26,23 +26,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch full history for versioning
+          fetch-depth: 0 # Fetch full history for versioning
           token: ${{ secrets.GITHUB_TOKEN }}
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22.12.0'
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Configure Git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-        
+
       - name: Determine version bump type
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         id: version_type
@@ -50,7 +50,7 @@ jobs:
           # Get the latest commit message
           COMMIT_MSG=$(git log -1 --pretty=%B)
           echo "Commit message: $COMMIT_MSG"
-          
+
           # Determine version bump type based on commit message
           if echo "$COMMIT_MSG" | grep -qE "^feat(\(.+\))?!:|^fix(\(.+\))?!:|^BREAKING CHANGE:|breaking change"; then
             echo "type=major" >> $GITHUB_OUTPUT
@@ -65,7 +65,7 @@ jobs:
             echo "type=patch" >> $GITHUB_OUTPUT
             echo "📝 Patch version bump (default)"
           fi
-      
+
       - name: Bump version and push tag
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
@@ -74,13 +74,13 @@ jobs:
           git commit -m "chore: bump version to $(node -p "require('./package.json').version")" || echo "No changes to commit"
           git tag "v$(node -p "require('./package.json').version")"
           git push origin main --tags
-        
+
       - name: Build
         run: npm run build
-        
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

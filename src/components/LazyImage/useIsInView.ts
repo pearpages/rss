@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 function useIsInView() {
   const imgRef = useRef<HTMLDivElement>(null);
@@ -13,7 +13,7 @@ function useIsInView() {
         }
       },
       {
-        rootMargin: "50px", // Start loading 50px before the image enters the viewport
+        rootMargin: '50px', // Start loading 50px before the image enters the viewport
         threshold: 0.1,
       }
     );

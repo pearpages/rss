@@ -30,10 +30,12 @@ class CookieService {
       }
 
       const parsed = JSON.parse(decodeURIComponent(cookieValue));
-      
+
       // Validate the structure and merge with defaults
       return {
-        selectedSources: Array.isArray(parsed.selectedSources) ? parsed.selectedSources : [],
+        selectedSources: Array.isArray(parsed.selectedSources)
+          ? parsed.selectedSources
+          : [],
         theme: parsed.theme === 'dark' ? 'dark' : 'light',
         lastUpdated: parsed.lastUpdated || new Date().toISOString(),
       };
@@ -55,8 +57,14 @@ class CookieService {
         lastUpdated: new Date().toISOString(),
       };
 
-      const cookieValue = encodeURIComponent(JSON.stringify(updatedPreferences));
-      this.setCookie(this.PREFERENCES_KEY, cookieValue, this.DEFAULT_EXPIRY_DAYS);
+      const cookieValue = encodeURIComponent(
+        JSON.stringify(updatedPreferences)
+      );
+      this.setCookie(
+        this.PREFERENCES_KEY,
+        cookieValue,
+        this.DEFAULT_EXPIRY_DAYS
+      );
     } catch (error) {
       console.error('Failed to save user preferences to cookies:', error);
     }
@@ -109,7 +117,7 @@ class CookieService {
    */
   unsaveArticle(articleLink: string): void {
     const savedArticles = this.getSavedArticles();
-    const updated = savedArticles.filter(link => link !== articleLink);
+    const updated = savedArticles.filter((link) => link !== articleLink);
     try {
       localStorage.setItem('rss_saved_articles', JSON.stringify(updated));
     } catch (error) {
@@ -157,7 +165,7 @@ class CookieService {
    */
   unignoreArticle(articleLink: string): void {
     const ignoredArticles = this.getIgnoredArticles();
-    const updated = ignoredArticles.filter(link => link !== articleLink);
+    const updated = ignoredArticles.filter((link) => link !== articleLink);
     try {
       localStorage.setItem('rss_ignored_articles', JSON.stringify(updated));
     } catch (error) {
@@ -178,15 +186,20 @@ class CookieService {
    */
   cleanupIgnoredArticles(currentArticleLinks: string[]): void {
     const ignoredArticles = this.getIgnoredArticles();
-    const validIgnoredArticles = ignoredArticles.filter(link => 
+    const validIgnoredArticles = ignoredArticles.filter((link) =>
       currentArticleLinks.includes(link)
     );
-    
+
     // Only update if there are articles to remove
     if (validIgnoredArticles.length !== ignoredArticles.length) {
       try {
-        localStorage.setItem('rss_ignored_articles', JSON.stringify(validIgnoredArticles));
-        console.log(`Cleaned up ${ignoredArticles.length - validIgnoredArticles.length} old ignored articles`);
+        localStorage.setItem(
+          'rss_ignored_articles',
+          JSON.stringify(validIgnoredArticles)
+        );
+        console.log(
+          `Cleaned up ${ignoredArticles.length - validIgnoredArticles.length} old ignored articles`
+        );
       } catch (error) {
         console.error('Failed to cleanup ignored articles:', error);
       }
@@ -222,9 +235,9 @@ class CookieService {
       return null; // Server-side rendering support
     }
 
-    const nameEQ = name + "=";
+    const nameEQ = name + '=';
     const ca = document.cookie.split(';');
-    
+
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
       while (c.charAt(0) === ' ') {
@@ -245,18 +258,18 @@ class CookieService {
       return; // Server-side rendering support
     }
 
-    let expires = "";
+    let expires = '';
     if (days) {
       const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      expires = '; expires=' + date.toUTCString();
     }
-    
+
     // Set cookie with secure flags for production
     const isSecure = window.location.protocol === 'https:';
     const secureFlag = isSecure ? '; Secure' : '';
     const sameSiteFlag = '; SameSite=Lax';
-    
+
     document.cookie = `${name}=${value}${expires}; path=/${secureFlag}${sameSiteFlag}`;
   }
 
@@ -264,7 +277,7 @@ class CookieService {
    * Private helper method to delete a cookie
    */
   private deleteCookie(name: string): void {
-    this.setCookie(name, "", -1);
+    this.setCookie(name, '', -1);
   }
 
   /**
@@ -284,30 +297,6 @@ class CookieService {
     } catch {
       return false;
     }
-  }
-
-  /**
-   * Get a summary of current preferences for debugging
-   */
-  getPreferencesSummary(): {
-    hasPreferences: boolean;
-    sourcesCount: number;
-    savedArticlesCount: number;
-    ignoredArticlesCount: number;
-    theme: string;
-    lastUpdated: string;
-    cookiesEnabled: boolean;
-  } {
-    const prefs = this.getPreferences();
-    return {
-      hasPreferences: this.getCookie(this.PREFERENCES_KEY) !== null,
-      sourcesCount: prefs.selectedSources.length,
-      savedArticlesCount: this.getSavedArticles().length,
-      ignoredArticlesCount: this.getIgnoredArticles().length,
-      theme: prefs.theme || 'light',
-      lastUpdated: prefs.lastUpdated,
-      cookiesEnabled: this.areCookiesEnabled(),
-    };
   }
 }
 
@@ -333,5 +322,4 @@ export const {
   saveTheme,
   clearPreferences,
   areCookiesEnabled,
-  getPreferencesSummary,
 } = cookieService;

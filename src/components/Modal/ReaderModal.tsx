@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { readerService, type ReaderResult } from "../../services/readerService";
-import "./index.css";
-import "./reader.css";
+import React, { useEffect, useRef, useState } from 'react';
+import { readerService, type ReaderResult } from '../../services/readerService';
+import './index.css';
+import './reader.css';
 
 interface ReaderModalProps {
   isOpen: boolean;
@@ -29,16 +29,16 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
   useEffect(() => {
     if (readerResult && modalRef.current) {
       const images = modalRef.current.querySelectorAll(
-        ".modal__article-content img"
+        '.modal__article-content img'
       );
       images.forEach((img) => {
         const imageElement = img as HTMLImageElement;
-        imageElement.style.maxWidth = "100%";
-        imageElement.style.maxHeight = "400px";
-        imageElement.style.height = "auto";
-        imageElement.style.objectFit = "contain";
-        imageElement.style.display = "block";
-        imageElement.style.margin = "1rem auto";
+        imageElement.style.maxWidth = '100%';
+        imageElement.style.maxHeight = '400px';
+        imageElement.style.height = 'auto';
+        imageElement.style.objectFit = 'contain';
+        imageElement.style.display = 'block';
+        imageElement.style.margin = '1rem auto';
       });
     }
   }, [readerResult]);
@@ -46,19 +46,19 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
   // Handle escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+      if (e.key === 'Escape' && isOpen) {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
 
@@ -71,11 +71,11 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
     };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, onClose]);
 
@@ -90,7 +90,7 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
 
       try {
         const result = await readerService.extractArticle(url);
-        console.log("📖 Reader result received:", {
+        console.log('📖 Reader result received:', {
           title: result.title,
           contentLength: result.content.length,
           success: result.success,
@@ -102,11 +102,11 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
           setHasError(true);
         }
       } catch (error) {
-        console.error("Failed to load article:", error);
+        console.error('Failed to load article:', error);
         setHasError(true);
         // Create a fallback result for display
         setReaderResult({
-          title: "Failed to Load Article",
+          title: 'Failed to Load Article',
           content: `
             <div style="text-align: center; padding: 2rem;">
               <h3>❌ Unable to Load Article</h3>
@@ -120,9 +120,9 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
               </a>
             </div>
           `,
-          excerpt: "Article content could not be extracted",
+          excerpt: 'Article content could not be extracted',
           success: false,
-          error: "Content extraction failed",
+          error: 'Content extraction failed',
         });
       } finally {
         setIsLoading(false);
@@ -155,7 +155,7 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
         {shouldShowHeader && (
           <div className="modal__header">
             <h2 className="modal__title">
-              {readerResult?.title || title || "Article"}
+              {readerResult?.title || title || 'Article'}
             </h2>
             <button
               className="modal__close"
@@ -202,7 +202,7 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
                         src={readerResult.imageUrl}
                         alt={readerResult.title}
                         onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = "none";
+                          (e.target as HTMLImageElement).style.display = 'none';
                         }}
                       />
                     </div>
@@ -242,7 +242,7 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
                     className="modal__article-content"
                     dangerouslySetInnerHTML={{ __html: readerResult.content }}
                     style={{
-                      overflow: "hidden",
+                      overflow: 'hidden',
                     }}
                   />
 

@@ -11,42 +11,51 @@ class RSSService {
     try {
       // Use proxy in development, direct API in production
       const isDevelopment = import.meta.env.DEV;
-      const baseUrl = isDevelopment 
-        ? '/api/rss2json/v1/api.json' 
+      const baseUrl = isDevelopment
+        ? '/api/rss2json/v1/api.json'
         : 'https://api.rss2json.com/v1/api.json';
-      
+
       const rss2jsonUrl = `${baseUrl}?rss_url=${encodeURIComponent(feed.url)}`;
-      
-      console.log(`Fetching ${feed.name} via RSS2JSON (${isDevelopment ? 'proxy' : 'direct'})...`);
-      
+
+      console.log(
+        `Fetching ${feed.name} via RSS2JSON (${isDevelopment ? 'proxy' : 'direct'})...`
+      );
+
       const response = await fetch(rss2jsonUrl);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
-      
+
       const data = await response.json();
       if (data.status === 'ok' && data.items && data.items.length > 0) {
-        console.log(`✅ Successfully loaded ${data.items.length} items from ${feed.name}`);
-        return data.items.map((item: { 
-          title?: string; 
-          link?: string; 
-          description?: string; 
-          pubDate?: string; 
-          author?: string;
-          thumbnail?: string;
-          enclosure?: { link?: string };
-        }, index: number) => ({
-          title: item.title || `Article ${index + 1}`,
-          link: item.link || '',
-          description: this.stripHtml(item.description || ''),
-          pubDate: item.pubDate || new Date().toISOString(),
-          author: item.author || '',
-          source: feed.url,
-          sourceName: feed.name,
-          image: this.extractImage(item)
-        }));
+        console.log(
+          `✅ Successfully loaded ${data.items.length} items from ${feed.name}`
+        );
+        return data.items.map(
+          (
+            item: {
+              title?: string;
+              link?: string;
+              description?: string;
+              pubDate?: string;
+              author?: string;
+              thumbnail?: string;
+              enclosure?: { link?: string };
+            },
+            index: number
+          ) => ({
+            title: item.title || `Article ${index + 1}`,
+            link: item.link || '',
+            description: this.stripHtml(item.description || ''),
+            pubDate: item.pubDate || new Date().toISOString(),
+            author: item.author || '',
+            source: feed.url,
+            sourceName: feed.name,
+            image: this.extractImage(item),
+          })
+        );
       }
-      
+
       throw new Error(`RSS2JSON returned status: ${data.status}`);
     } catch (error) {
       console.warn(`❌ Failed to fetch ${feed.name}:`, error);
@@ -56,16 +65,19 @@ class RSSService {
 
   async fetchMultipleFeeds(feeds: RSSFeed[]): Promise<RSSItem[]> {
     console.log('🔄 Fetching RSS feeds...');
-    
-    const promises = feeds.map(feed => this.fetchFeed(feed));
+
+    const promises = feeds.map((feed) => this.fetchFeed(feed));
     const results = await Promise.allSettled(promises);
-    
+
     const allItems: RSSItem[] = [];
     results.forEach((result, index) => {
       if (result.status === 'fulfilled') {
         allItems.push(...result.value);
       } else {
-        console.error(`Failed to fetch feed ${feeds[index].name}:`, result.reason);
+        console.error(
+          `Failed to fetch feed ${feeds[index].name}:`,
+          result.reason
+        );
       }
     });
 
@@ -76,22 +88,22 @@ class RSSService {
     }
 
     // Sort by publication date (newest first)
-    const sortedItems = allItems.sort((a, b) => 
-      new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+    const sortedItems = allItems.sort(
+      (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
     );
-    
+
     console.log(`📊 Loaded ${sortedItems.length} total articles`);
     return sortedItems;
   }
 
   private stripHtml(html: string): string {
     if (!html) return '';
-    
+
     // Create a temporary div to strip HTML tags
     const tmp = document.createElement('div');
     tmp.innerHTML = html;
     const text = tmp.textContent || tmp.innerText || '';
-    
+
     // Limit description length for better mobile display
     return text.length > 200 ? text.substring(0, 200) + '...' : text;
   }
@@ -104,14 +116,14 @@ class RSSService {
     // Try thumbnail first, then enclosure, then extract from description
     if (item.thumbnail) return item.thumbnail;
     if (item.enclosure?.link) return item.enclosure.link;
-    
+
     const description = item.description || '';
     if (!description) return undefined;
-    
+
     // Try to extract image from HTML content in description
     const imgRegex = /<img[^>]+src\s*=\s*['"]+([^'"]*)['"]+[^>]*>/i;
     const match = description.match(imgRegex);
-    
+
     if (match && match[1]) {
       // Make sure it's a valid image URL
       const imageUrl = match[1];
@@ -119,7 +131,7 @@ class RSSService {
         return imageUrl;
       }
     }
-    
+
     return undefined;
   }
 }

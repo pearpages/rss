@@ -190,8 +190,12 @@
 }
 
 @keyframes modal-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .modal__error {
@@ -326,10 +330,10 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .modal__content {
     border-radius: 16px;
-    box-shadow: 
+    box-shadow:
       0 25px 50px -12px rgba(0, 0, 0, 0.25),
       0 0 0 1px rgba(255, 255, 255, 0.05);
     width: 90vw;
@@ -338,7 +342,7 @@
     max-height: 800px;
     animation: modal-slide-up-desktop 0.3s ease-out;
   }
-  
+
   @keyframes modal-slide-up-desktop {
     from {
       opacity: 0;
@@ -349,16 +353,16 @@
       transform: translateY(0) scale(1);
     }
   }
-  
+
   .modal__header {
     padding: 0.75rem 1rem;
     min-height: 2.5rem;
   }
-  
+
   .modal__title {
     font-size: 1rem;
   }
-  
+
   .modal__close-floating {
     top: 1.5rem;
     right: 1.5rem;
@@ -366,36 +370,36 @@
     height: 3rem;
     padding: 0.875rem;
   }
-  
+
   .modal__error {
     padding: 3rem;
   }
-  
+
   .modal__error-icon {
     font-size: 3rem;
   }
-  
+
   .modal__error h3 {
     font-size: 1.25rem;
   }
-  
+
   .modal__error p {
     font-size: 0.9rem;
     max-width: 400px;
   }
-  
+
   .modal__retry-btn {
     font-size: 0.9rem;
   }
-  
+
   .modal__external-btn {
     font-size: 0.9rem;
   }
-  
+
   .modal__proxy-btn {
     font-size: 0.9rem;
   }
-  
+
   .modal__error-actions {
     flex-direction: row;
     justify-content: center;
@@ -465,8 +469,12 @@
 }
 
 @keyframes modal-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .modal__error {
@@ -527,4 +535,3 @@
 .modal__retry-btn:active {
   transform: translateY(0);
 }
-

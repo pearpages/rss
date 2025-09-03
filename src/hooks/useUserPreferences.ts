@@ -6,10 +6,10 @@ import type { UserPreferences } from '../services/cookieService';
  * Custom hook for managing user preferences with cookies and localStorage
  */
 export const useUserPreferences = () => {
-  const [preferences, setPreferences] = useState<UserPreferences>(() => 
+  const [preferences, setPreferences] = useState<UserPreferences>(() =>
     cookieService.getPreferences()
   );
-  
+
   const [savedArticles, setSavedArticles] = useState<string[]>(() =>
     cookieService.getSavedArticles()
   );
@@ -26,25 +26,34 @@ export const useUserPreferences = () => {
   }, []);
 
   // Update preferences and save to cookies
-  const updatePreferences = useCallback((newPreferences: Partial<UserPreferences>) => {
-    cookieService.savePreferences(newPreferences);
-    reloadPreferences();
-  }, [reloadPreferences]);
+  const updatePreferences = useCallback(
+    (newPreferences: Partial<UserPreferences>) => {
+      cookieService.savePreferences(newPreferences);
+      reloadPreferences();
+    },
+    [reloadPreferences]
+  );
 
   // Source filter management
   const selectedSources = preferences.selectedSources;
-  
-  const updateSelectedSources = useCallback((sources: string[]) => {
-    updatePreferences({ selectedSources: sources });
-  }, [updatePreferences]);
 
-  const toggleSource = useCallback((sourceName: string) => {
-    const newSelectedSources = selectedSources.includes(sourceName)
-      ? selectedSources.filter(s => s !== sourceName)
-      : [...selectedSources, sourceName];
-    
-    updateSelectedSources(newSelectedSources);
-  }, [selectedSources, updateSelectedSources]);
+  const updateSelectedSources = useCallback(
+    (sources: string[]) => {
+      updatePreferences({ selectedSources: sources });
+    },
+    [updatePreferences]
+  );
+
+  const toggleSource = useCallback(
+    (sourceName: string) => {
+      const newSelectedSources = selectedSources.includes(sourceName)
+        ? selectedSources.filter((s) => s !== sourceName)
+        : [...selectedSources, sourceName];
+
+      updateSelectedSources(newSelectedSources);
+    },
+    [selectedSources, updateSelectedSources]
+  );
 
   // Saved articles management (localStorage)
   const saveArticle = useCallback((articleLink: string) => {
@@ -57,13 +66,16 @@ export const useUserPreferences = () => {
     setSavedArticles(cookieService.getSavedArticles());
   }, []);
 
-  const toggleSaveArticle = useCallback((articleLink: string) => {
-    if (cookieService.isArticleSaved(articleLink)) {
-      unsaveArticle(articleLink);
-    } else {
-      saveArticle(articleLink);
-    }
-  }, [saveArticle, unsaveArticle]);
+  const toggleSaveArticle = useCallback(
+    (articleLink: string) => {
+      if (cookieService.isArticleSaved(articleLink)) {
+        unsaveArticle(articleLink);
+      } else {
+        saveArticle(articleLink);
+      }
+    },
+    [saveArticle, unsaveArticle]
+  );
 
   const isArticleSaved = useCallback((articleLink: string) => {
     return cookieService.isArticleSaved(articleLink);
@@ -80,30 +92,39 @@ export const useUserPreferences = () => {
     setIgnoredArticles(cookieService.getIgnoredArticles());
   }, []);
 
-  const toggleIgnoreArticle = useCallback((articleLink: string) => {
-    if (cookieService.isArticleIgnored(articleLink)) {
-      unignoreArticle(articleLink);
-    } else {
-      ignoreArticle(articleLink);
-    }
-  }, [ignoreArticle, unignoreArticle]);
+  const toggleIgnoreArticle = useCallback(
+    (articleLink: string) => {
+      if (cookieService.isArticleIgnored(articleLink)) {
+        unignoreArticle(articleLink);
+      } else {
+        ignoreArticle(articleLink);
+      }
+    },
+    [ignoreArticle, unignoreArticle]
+  );
 
   const isArticleIgnored = useCallback((articleLink: string) => {
     return cookieService.isArticleIgnored(articleLink);
   }, []);
 
   // Clean up ignored articles based on current articles
-  const cleanupIgnoredArticles = useCallback((currentArticleLinks: string[]) => {
-    cookieService.cleanupIgnoredArticles(currentArticleLinks);
-    setIgnoredArticles(cookieService.getIgnoredArticles());
-  }, []);
+  const cleanupIgnoredArticles = useCallback(
+    (currentArticleLinks: string[]) => {
+      cookieService.cleanupIgnoredArticles(currentArticleLinks);
+      setIgnoredArticles(cookieService.getIgnoredArticles());
+    },
+    []
+  );
 
   // Theme management
   const theme = preferences.theme || 'light';
 
-  const updateTheme = useCallback((newTheme: 'light' | 'dark') => {
-    updatePreferences({ theme: newTheme });
-  }, [updatePreferences]);
+  const updateTheme = useCallback(
+    (newTheme: 'light' | 'dark') => {
+      updatePreferences({ theme: newTheme });
+    },
+    [updatePreferences]
+  );
 
   const toggleTheme = useCallback(() => {
     updateTheme(theme === 'light' ? 'dark' : 'light');
@@ -137,19 +158,19 @@ export const useUserPreferences = () => {
     // Full preferences object
     preferences,
     updatePreferences,
-    
+
     // Source filtering
     selectedSources,
     updateSelectedSources,
     toggleSource,
-    
+
     // Saved articles
     savedArticles,
     saveArticle,
     unsaveArticle,
     toggleSaveArticle,
     isArticleSaved,
-    
+
     // Ignored articles
     ignoredArticles,
     ignoreArticle,
@@ -157,18 +178,15 @@ export const useUserPreferences = () => {
     toggleIgnoreArticle,
     isArticleIgnored,
     cleanupIgnoredArticles,
-    
+
     // Theme
     theme,
     updateTheme,
     toggleTheme,
-    
+
     // Utility functions
     clearAllPreferences,
     reloadPreferences,
-    
-    // Debug info
-    cookiesEnabled: cookieService.areCookiesEnabled(),
   };
 };
 
@@ -176,8 +194,9 @@ export const useUserPreferences = () => {
  * Simplified hook for just source filtering
  */
 export const useSourceFilter = () => {
-  const { selectedSources, updateSelectedSources, toggleSource } = useUserPreferences();
-  
+  const { selectedSources, updateSelectedSources, toggleSource } =
+    useUserPreferences();
+
   return {
     selectedSources,
     updateSelectedSources,
@@ -189,14 +208,14 @@ export const useSourceFilter = () => {
  * Simplified hook for just saved articles
  */
 export const useSavedArticles = () => {
-  const { 
-    savedArticles, 
-    saveArticle, 
-    unsaveArticle, 
-    toggleSaveArticle, 
-    isArticleSaved 
+  const {
+    savedArticles,
+    saveArticle,
+    unsaveArticle,
+    toggleSaveArticle,
+    isArticleSaved,
   } = useUserPreferences();
-  
+
   return {
     savedArticles,
     saveArticle,
@@ -210,15 +229,15 @@ export const useSavedArticles = () => {
  * Simplified hook for just ignored articles
  */
 export const useIgnoredArticles = () => {
-  const { 
-    ignoredArticles, 
-    ignoreArticle, 
-    unignoreArticle, 
-    toggleIgnoreArticle, 
+  const {
+    ignoredArticles,
+    ignoreArticle,
+    unignoreArticle,
+    toggleIgnoreArticle,
     isArticleIgnored,
-    cleanupIgnoredArticles
+    cleanupIgnoredArticles,
   } = useUserPreferences();
-  
+
   return {
     ignoredArticles,
     ignoreArticle,
