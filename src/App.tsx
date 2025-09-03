@@ -13,6 +13,16 @@ import { MainContentView } from './components/views';
 
 const availableSources = DEFAULT_RSS_FEEDS.map((feed) => feed.name);
 
+function HeaderTitle({ onClick }: { onClick?: () => void }) {
+  return (
+    <h1 className="header-title" onClick={onClick ?? (() => {})}>
+      <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> News
+      Aggregator <span className="version">beta v{getAppVersion()}</span>
+      {onClick && <span className="back-indicator">← Back to feeds</span>}
+    </h1>
+  );
+}
+
 function App() {
   const { articles, loading, error, fetchArticles } = useFetchArticles();
   useCleanupIgnoredArticles(articles);
@@ -93,18 +103,9 @@ function App() {
           {loading ? 'Loading...' : '🔄'}
         </button>
         {showSavedOnly ? (
-          <h1 className="header-title" onClick={() => setShowSavedOnly(false)}>
-            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" />{' '}
-            News Aggregator{' '}
-            <span className="version">beta v{getAppVersion()}</span>
-            <span className="back-indicator">← Back to feeds</span>
-          </h1>
+          <HeaderTitle onClick={() => setShowSavedOnly(false)} />
         ) : (
-          <h1 className="header-title">
-            <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" />{' '}
-            News Aggregator{' '}
-            <span className="version">beta v{getAppVersion()}</span>
-          </h1>
+          <HeaderTitle />
         )}
         <Menu
           onFilterSources={updateSelectedSources}
