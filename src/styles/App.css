@@ -218,7 +218,7 @@ body {
 }
 
 .article-content {
-  padding: 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
 }
 
 .article-header {
@@ -234,6 +234,14 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
+}
+
+.article-title-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 10px;
+  gap: 10px;
 }
 
 .article-title-button {
@@ -270,6 +278,46 @@ body {
 
 .external-link-icon:hover {
   color: #667eea;
+}
+
+.share-button {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  margin-left: 0.25rem;
+}
+
+.share-button:hover {
+  color: #667eea;
+  background-color: #f1f5f9;
+  transform: scale(1.1);
+}
+
+.copy-url-button {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  margin-left: 0.25rem;
+}
+
+.copy-url-button:hover {
+  color: #667eea;
+  background-color: #f1f5f9;
+  transform: scale(1.1);
 }
 
 .article-title a {
@@ -503,7 +551,7 @@ body {
   }
 
   .article-content {
-    padding: 1.5rem;
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
   }
 
   .article-image {

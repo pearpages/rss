@@ -1,7 +1,10 @@
 import { formatDistanceToNow } from 'date-fns';
 import type { RSSItem } from '../../types/rss';
-import { LazyImage } from '../LazyImage';
+import { ArticleLayout } from '../ArticleLayout';
 import { getSourceColor, isLightColor } from '../../utils/colorUtils';
+import { ArticleTitle } from './ArticleTitle';
+import { ArticleImage } from './ArticleImage';
+import { ArticleTitleActions } from './ArticleTitleActions';
 
 interface ArticlesListViewProps {
   articles: RSSItem[];
@@ -26,40 +29,25 @@ export function ArticlesListView({
         const sourceColor = getSourceColor(article.sourceName);
 
         return (
-          <article key={`${article.link}-${index}`} className="article-card">
-            {article.image && (
-              <LazyImage
-                src={article.image}
-                alt={article.title}
-                className="article-image"
-                onError={() => {
-                  // Image failed to load, this will be handled by the component
-                }}
-              />
-            )}
+          <ArticleLayout
+            key={`${article.link}-${index}`}
+            article={article}
+            index={index}
+          >
+            {{
+              image: <ArticleImage article={article} />,
 
-            <div className="article-content">
-              <div className="article-header">
-                <h2 className="article-title">
-                  <button
-                    className="article-title-button"
-                    onClick={() => onArticleClick(article)}
-                    title="Read in reader mode"
-                  >
-                    {article.title}
-                  </button>
-                  <a
-                    href={article.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="external-link-icon"
-                    title="Open original article"
-                  >
-                    🔗
-                  </a>
-                </h2>
+              title: (
+                <ArticleTitle
+                  article={article}
+                  onArticleClick={onArticleClick}
+                />
+              ),
 
-                <div className="article-meta">
+              titleActions: <ArticleTitleActions article={article} />,
+
+              meta: (
+                <>
                   <span
                     className="source-tag"
                     style={{
@@ -77,6 +65,11 @@ export function ArticlesListView({
                   {article.author && (
                     <span className="article-author">by {article.author}</span>
                   )}
+                </>
+              ),
+
+              actions: (
+                <>
                   <button
                     className={`save-button ${isArticleSaved(article.link) ? 'saved' : ''}`}
                     onClick={() => toggleSaveArticle(article.link)}
@@ -99,14 +92,14 @@ export function ArticlesListView({
                   >
                     {isArticleIgnored(article.link) ? '👁️' : '🙈'}
                   </button>
-                </div>
-              </div>
+                </>
+              ),
 
-              {article.description && (
+              description: article.description && (
                 <p className="article-description">{article.description}</p>
-              )}
-            </div>
-          </article>
+              ),
+            }}
+          </ArticleLayout>
         );
       })}
     </div>

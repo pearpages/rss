@@ -1,3 +1,4 @@
+export { ArticleLayout } from './ArticleLayout';
 export { LazyImage } from './LazyImage';
 export { Menu } from './Menu';
 export { Modal } from './Modal';
