@@ -37,14 +37,14 @@ export function ArticlesListView({
             {{
               image: <ArticleImage article={article} />,
 
-              title: (
-                <ArticleTitle
+              title: <ArticleTitle article={article} />,
+
+              titleActions: (
+                <ArticleTitleActions
                   article={article}
-                  onArticleClick={onArticleClick}
+                  openModal={() => onArticleClick(article)}
                 />
               ),
-
-              titleActions: <ArticleTitleActions article={article} />,
 
               meta: (
                 <>

@@ -1,20 +1,16 @@
 import type { RSSItem } from '../../types/rss';
 
-const ArticleTitle = ({
-  article,
-  onArticleClick,
-}: {
-  article: RSSItem;
-  onArticleClick: (article: RSSItem) => void;
-}) => {
+const ArticleTitle = ({ article }: { article: RSSItem }) => {
   return (
-    <button
+    <a
+      href={article.link}
+      target="_blank"
+      rel="noopener noreferrer"
       className="article-title-button"
-      onClick={() => onArticleClick(article)}
-      title="Read in reader mode"
+      title="Open original article"
     >
       {article.title}
-    </button>
+    </a>
   );
 };
 

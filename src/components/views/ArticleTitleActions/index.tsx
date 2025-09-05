@@ -1,6 +1,13 @@
-import type { RSSItem } from '../../types/rss';
+import type { RSSItem } from '../../../types/rss';
+import './index.css';
 
-const ArticleTitleActions = ({ article }: { article: RSSItem }) => {
+const ArticleTitleActions = ({
+  openModal,
+  article,
+}: {
+  article: RSSItem;
+  openModal: () => void;
+}) => {
   const hasNativeShare =
     typeof navigator !== 'undefined' && 'share' in navigator;
 
@@ -8,7 +15,7 @@ const ArticleTitleActions = ({ article }: { article: RSSItem }) => {
     <>
       {hasNativeShare && (
         <button
-          className="share-button"
+          className="action-button"
           onClick={async () => {
             try {
               await navigator.share({
@@ -25,7 +32,7 @@ const ArticleTitleActions = ({ article }: { article: RSSItem }) => {
         </button>
       )}
       <button
-        className="copy-url-button"
+        className="action-button"
         onClick={async () => {
           try {
             await navigator.clipboard.writeText(article.link);
@@ -46,15 +53,13 @@ const ArticleTitleActions = ({ article }: { article: RSSItem }) => {
       >
         🔗
       </button>
-      <a
-        href={article.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="external-link-icon"
-        title="Open original article"
+      <button
+        className="action-button"
+        onClick={openModal}
+        title="Open article"
       >
-        ↗
-      </a>
+        📰
+      </button>
     </>
   );
 };
