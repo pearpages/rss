@@ -1,4 +1,5 @@
 import { getAppVersion } from '../../utils/version';
+import { NewCounter } from '../NewCounter';
 import './index.css';
 
 function HeaderTitle({ onClick }: { onClick?: () => void }) {
@@ -10,6 +11,9 @@ function HeaderTitle({ onClick }: { onClick?: () => void }) {
         <div className="version">beta v{getAppVersion()}</div>
       </div>
       {onClick && <span className="back-indicator">← Back to feeds</span>}
+      <div className="header-title__counter">
+        <NewCounter />
+      </div>
     </h1>
   );
 }
