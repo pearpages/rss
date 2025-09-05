@@ -5,23 +5,13 @@ import './styles/App.css';
 import { Menu } from './components/Menu';
 import { ReaderModal } from './components/Modal/ReaderModal';
 import { useUserPreferences } from './hooks/useUserPreferences';
-import { getAppVersion } from './utils/version';
 import { CookieNotification } from './components/CookieNotification';
+import { HeaderTitle } from './components/HeaderTitle';
 import { useArticles } from './hooks/useArticles';
 import { useCleanupIgnoredArticles } from './services/useCleanupArticles';
 import { MainContentView } from './components/views';
 
 const availableSources = DEFAULT_RSS_FEEDS.map((feed) => feed.name);
-
-function HeaderTitle({ onClick }: { onClick?: () => void }) {
-  return (
-    <h1 className="header-title" onClick={onClick ?? (() => {})}>
-      <img src="/rss-classic-32.svg" alt="RSS" className="header-icon" /> News
-      Aggregator <span className="version">beta v{getAppVersion()}</span>
-      {onClick && <span className="back-indicator">← Back to feeds</span>}
-    </h1>
-  );
-}
 
 function App() {
   const { articles, loading, error, fetchArticles } = useArticles();

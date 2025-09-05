@@ -83,30 +83,10 @@ body {
   text-overflow: ellipsis;
 }
 
-.header-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .header-icon {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-}
-
-.version {
-  font-size: 0.7em;
-  opacity: 0.7;
-  font-weight: normal;
-  margin-left: 8px;
 }
 
 .back-indicator {
@@ -487,11 +467,6 @@ body {
   .header {
     padding: 0.75rem 1rem;
     min-height: 3.5rem;
-  }
-
-  .header h1,
-  .header-title {
-    font-size: 1.25rem;
   }
 
   .cookie-notification {
