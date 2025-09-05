@@ -1,0 +1,153 @@
+{
+  "status": "ok",
+  "feed": {
+    "url": "https://www.aljazeera.com/xml/rss/all.xml",
+    "title": "Al Jazeera – Breaking News, World News and Video from Al Jazeera",
+    "link": "https://www.aljazeera.com/",
+    "author": "",
+    "description": "Breaking News, World News and Video from Al Jazeera",
+    "image": "https://www.aljazeera.com/images/logo_aje.png"
+  },
+  "items": [
+    {
+      "title": "Bearing witness: A doctor's reckoning with Gaza",
+      "pubDate": "2025-09-04 10:54:12",
+      "link": "https://www.aljazeera.com/video/centre-stage/2025/9/4/aje-onl-cs-mimi-syed-040925?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756980876",
+      "author": "",
+      "thumbnail": "",
+      "description": "Dr Mimi Syed, a US emergency physician, talks about the horrific reality she witnessed in Gaza.",
+      "content": "Dr Mimi Syed, a US emergency physician, talks about the horrific reality she witnessed in Gaza.",
+      "enclosure": {},
+      "categories": [
+        "Show Types"
+      ]
+    },
+    {
+      "title": "Yemeni bodybuilder fighting to make international dream come true",
+      "pubDate": "2025-09-04 10:21:00",
+      "link": "https://www.aljazeera.com/sports/2025/9/4/yemeni-bodybuilder-fighting-to-make-international-dream-come-true?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756825168",
+      "author": "",
+      "thumbnail": "",
+      "description": "Saleh Hussein al-Raidi is fighting against the odds in Yemen in an attempt to make his bodybuilding dreams a reality.",
+      "content": "Saleh Hussein al-Raidi is fighting against the odds in Yemen in an attempt to make his bodybuilding dreams a reality.",
+      "enclosure": {},
+      "categories": [
+        "Sport"
+      ]
+    },
+    {
+      "title": "Israel threatens to unleash biblical plagues on Yemen's Houthis",
+      "pubDate": "2025-09-04 09:46:03",
+      "link": "https://www.aljazeera.com/news/2025/9/4/israel-threatens-to-unleash-biblical-plagues-on-yemens-houthis?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756971441",
+      "author": "",
+      "thumbnail": "",
+      "description": "Defence minister's threat follows report of new missile launch from Yemen.",
+      "content": "Defence minister's threat follows report of new missile launch from Yemen.",
+      "enclosure": {},
+      "categories": [
+        "News"
+      ]
+    },
+    {
+      "title": "Racism is not 'hate'",
+      "pubDate": "2025-09-04 09:37:12",
+      "link": "https://www.aljazeera.com/opinions/2025/9/4/racism-is-not-hate?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756896478",
+      "author": "",
+      "thumbnail": "",
+      "description": "Racism is not simply hatred but a global system of power and profit that sustains inequality and violence.",
+      "content": "Racism is not simply hatred but a global system of power and profit that sustains inequality and violence.",
+      "enclosure": {},
+      "categories": [
+        "Opinions"
+      ]
+    },
+    {
+      "title": "Israel's genocide in Gaza is \"normalised\"",
+      "pubDate": "2025-09-04 09:14:29",
+      "link": "https://www.aljazeera.com/video/quotable/2025/9/4/israels-genocide-in-gaza-is-normalised?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756976800",
+      "author": "",
+      "thumbnail": "",
+      "description": "Israel's killings of innocent people is \"normalised\", as genocide elsewhere would spark global outrage",
+      "content": "Israel's killings of innocent people is \"normalised\", as genocide elsewhere would spark global outrage",
+      "enclosure": {},
+      "categories": [
+        "Show Types"
+      ]
+    },
+    {
+      "title": "What did a US court rule on Tren de Aragua deportations?",
+      "pubDate": "2025-09-04 09:07:11",
+      "link": "https://www.aljazeera.com/news/2025/9/4/what-did-a-us-court-rule-on-tren-de-aragua-deportations?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756966771",
+      "author": "",
+      "thumbnail": "",
+      "description": "Alien Enemies Act cannot deport Venezuelan Tren de Aragua gang, but deportations proceed under immigration laws.",
+      "content": "Alien Enemies Act cannot deport Venezuelan Tren de Aragua gang, but deportations proceed under immigration laws.",
+      "enclosure": {},
+      "categories": [
+        "News"
+      ]
+    },
+    {
+      "title": "Why is the price of gold hitting record highs?",
+      "pubDate": "2025-09-04 09:04:48",
+      "link": "https://www.aljazeera.com/news/2025/9/4/why-is-the-price-of-gold-hitting-record-highs?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756959791",
+      "author": "",
+      "thumbnail": "",
+      "description": "The price of gold has soared as investors seek out safe havens amid heightened economic uncertainty.",
+      "content": "The price of gold has soared as investors seek out safe havens amid heightened economic uncertainty.",
+      "enclosure": {},
+      "categories": [
+        "News"
+      ]
+    },
+    {
+      "title": "Earthquake rescue teams battling to reach survivors in Afghanistan",
+      "pubDate": "2025-09-04 08:53:33",
+      "link": "https://www.aljazeera.com/gallery/2025/9/4/afghanistan-earthquake-rescue-teams-battle-to-reach-remote-survivors?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756963925",
+      "author": "",
+      "thumbnail": "",
+      "description": "Rescuers struggling to reach isolated villages following devastating quake that killed at least 1,400 people.",
+      "content": "Rescuers struggling to reach isolated villages following devastating quake that killed at least 1,400 people.",
+      "enclosure": {},
+      "categories": [
+        "News"
+      ]
+    },
+    {
+      "title": "NBA to investigate Kawhi Leonard-LA Clippers endorsement deal",
+      "pubDate": "2025-09-04 08:41:08",
+      "link": "https://www.aljazeera.com/sports/2025/9/4/nba-to-investigate-kawhi-leonard-la-clippers-endorsement-deal?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756965631",
+      "author": "",
+      "thumbnail": "",
+      "description": "NBA says it will open an investigation into a report that Clippers paid Leonard $28m for no-show job at a company.",
+      "content": "NBA says it will open an investigation into a report that Clippers paid Leonard $28m for no-show job at a company.",
+      "enclosure": {},
+      "categories": [
+        "Sport"
+      ]
+    },
+    {
+      "title": "Video: Israeli attacks pound displacement camps in Gaza",
+      "pubDate": "2025-09-04 08:35:10",
+      "link": "https://www.aljazeera.com/video/newsfeed/2025/9/4/video-israeli-attacks-pound-displacement-camps-in-gaza?traffic_source=rss",
+      "guid": "https://www.aljazeera.com/?t=1756974233",
+      "author": "",
+      "thumbnail": "",
+      "description": "Fires were seen burning in a displacement camp in Gaza City where Israeli forces attacked Palestinians in tents.",
+      "content": "Fires were seen burning in a displacement camp in Gaza City where Israeli forces attacked Palestinians in tents.",
+      "enclosure": {},
+      "categories": [
+        "Show Types"
+      ]
+    }
+  ]
+}

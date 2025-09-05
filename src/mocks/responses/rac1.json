@@ -1,0 +1,183 @@
+{
+  "status": "ok",
+  "feed": {
+    "url": "https://www.rac1.cat/rss/home.xml",
+    "title": "Portada",
+    "link": "https://www.rac1.cat/",
+    "author": "",
+    "description": "Portada",
+    "image": "https://www.rac1.cat/images/logo.png"
+  },
+  "items": [
+    {
+      "title": "15 morts i 18 ferits en el descarrilament de l'emblemàtic funicular de Lisboa",
+      "pubDate": "2025-09-03 18:22:46",
+      "link": "https://www.rac1.cat/internacional/20250903/285930/vintena-ferits-dos-critics-descarrilament-funicular-elevador-gloria-lisboa.html",
+      "guid": "https://www.rac1.cat/internacional/20250903/285930/vintena-ferits-dos-critics-descarrilament-funicular-elevador-gloria-lisboa.html",
+      "author": "Autor Generico",
+      "thumbnail": "",
+      "description": "Almenys 15 morts i 18 ferits, cinc de greus, després que aquest dimecres descarrilés el funicular Elevador de la Glòria, a Lisboa.",
+      "content": "Almenys 15 morts i 18 ferits, cinc de greus, després que aquest dimecres descarrilés el funicular Elevador de la Glòria, a Lisboa.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2025/09/03/68b8a017a3dda.r_d.1779-802-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Internacional"
+      ]
+    },
+    {
+      "title": "L'exconseller Jaume Giró trenca amb Junts per discrepàncies polítiques amb Puigdemont",
+      "pubDate": "2025-09-04 04:27:50",
+      "link": "https://www.rac1.cat/politica/20250904/285983/l-exconseller-jaume-giro-trenca-amb-discrepancies-politiques-amb-puigdemont.html",
+      "guid": "https://www.rac1.cat/politica/20250904/285983/l-exconseller-jaume-giro-trenca-amb-discrepancies-politiques-amb-puigdemont.html",
+      "author": "Autor Generico",
+      "thumbnail": "",
+      "description": "L'exconseller d'Economia Jaume Giró parteix peres amb Carles Puigdemont. Ho ha avançat La Vanguardia.",
+      "content": "L'exconseller d'Economia Jaume Giró parteix peres amb Carles Puigdemont. Ho ha avançat La Vanguardia.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2022/08/05/62ecb3db7bd97.r_d.1966-1425-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Política"
+      ]
+    },
+    {
+      "title": "L'equip ciclista d'Israel es nega a abandonar la Vuelta tot i les pressions de la direcció de la cursa i les protestes a Bilbao",
+      "pubDate": "2025-09-04 05:13:31",
+      "link": "https://www.rac1.cat/esports/20250904/285990/equip-ciclista-israel-nega-abandonar-vuelta-pressions-direccio-cursa-protestes-bilbao.html",
+      "guid": "https://www.rac1.cat/esports/20250904/285990/equip-ciclista-israel-nega-abandonar-vuelta-pressions-direccio-cursa-protestes-bilbao.html",
+      "author": "Autor Generico",
+      "thumbnail": "",
+      "description": "L'equip ciclista Israel Premier Tech es nega a abandonar la Vuelta malgrat les pressions que ha rebut de la mateixa prova i les protestes d'aquest dimecres a Bilbao, al País Basc.",
+      "content": "L'equip ciclista Israel Premier Tech es nega a abandonar la Vuelta malgrat les pressions que ha rebut de la mateixa prova i les protestes d'aquest dimecres a Bilbao, al País Basc.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/uploads/2025/09/04/68b91b2a0c528.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Esports"
+      ]
+    },
+    {
+      "title": "Els professors carreguen contra el model d'escola inclusiva: \"Sense recursos, és un brindis al sol\"",
+      "pubDate": "2025-09-03 20:47:08",
+      "link": "https://www.rac1.cat/societat/20250903/285940/professors-carreguen-model-escola-inclusiva-recursos-brindis-nhs.html",
+      "guid": "https://www.rac1.cat/societat/20250903/285940/professors-carreguen-model-escola-inclusiva-recursos-brindis-nhs.html",
+      "author": "Pep Tormos",
+      "thumbnail": "",
+      "description": "Dilluns tornaran a les aules al voltant d'un milió d'estudiants. I segons l'últim recompte del departament, més de 335.000 necessitaran suport educatiu.",
+      "content": "Dilluns tornaran a les aules al voltant d'un milió d'estudiants. I segons l'últim recompte del departament, més de 335.000 necessitaran suport educatiu.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2022/01/25/62b448ee15ccc.r_d.1168-590-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Societat"
+      ]
+    },
+    {
+      "title": "Aena esclata contra Ryanair per la retallada de vols: \"Insolència\", \"ploriquejos\" i una \"infumable estratègia d'extorsió\"",
+      "pubDate": "2025-09-03 15:12:12",
+      "link": "https://www.rac1.cat/societat/20250903/285879/aena-esclata-ryanair-retallada-vols-insolencia-ploriquejos-infumable-estrategia-extorsio.html",
+      "guid": "https://www.rac1.cat/societat/20250903/285879/aena-esclata-ryanair-retallada-vols-insolencia-ploriquejos-infumable-estrategia-extorsio.html",
+      "author": "Autor Generico",
+      "thumbnail": "",
+      "description": "Ryanair reduirà un 16% les places a l'estat espanyol per aquest hivern: tanca la seva base a Santiago de Compostel·la i suspèn els vols a Vigo i Tenerife Nord.",
+      "content": "Ryanair reduirà un 16% les places a l'estat espanyol per aquest hivern: tanca la seva base a Santiago de Compostel·la i suspèn els vols a Vigo i Tenerife Nord.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2022/06/23/62b9caf01364d.r_d.606-336-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Societat"
+      ]
+    },
+    {
+      "title": "Tornen els xàfecs a partir del migdia",
+      "pubDate": "2025-09-04 04:59:12",
+      "link": "https://www.rac1.cat/meteo/20250904/285991/tornen-xafecs-partir-migdia-previsio-temps-avui-4-setembre-catalunya.html",
+      "guid": "https://www.rac1.cat/meteo/20250904/285991/tornen-xafecs-partir-migdia-previsio-temps-avui-4-setembre-catalunya.html",
+      "author": "Mònica Usart",
+      "thumbnail": "",
+      "description": "Aquesta primera setmana de setembre ens està portant una mica de tot, però de pluja, poca. Només va ploure de manera generosa la matinada de dilluns.",
+      "content": "Aquesta primera setmana de setembre ens està portant una mica de tot, però de pluja, poca. Només va ploure de manera generosa la matinada de dilluns.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2023/08/23/64e667fc54af2.r_d.990-1034-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Mèteo"
+      ]
+    },
+    {
+      "title": "Barcelona trenca el rècord de nits tòrrides: 36 dies sense baixar dels 25 ºC en cap moment",
+      "pubDate": "2025-09-03 17:01:05",
+      "link": "https://www.rac1.cat/meteo/20250903/285906/barcelona-trenca-record-nits-torrides-36-dies-baixar-25-c-moment-centre-ciutat.html",
+      "guid": "https://www.rac1.cat/meteo/20250903/285906/barcelona-trenca-record-nits-torrides-36-dies-baixar-25-c-moment-centre-ciutat.html",
+      "author": "Martí Oliveras",
+      "thumbnail": "",
+      "description": "L'estiu que aviat deixarem enrere ha sigut el segon més càlid al conjunt de Catalunya des que hi ha registres, només superat per l'estiu del 2022.",
+      "content": "L'estiu que aviat deixarem enrere ha sigut el segon més càlid al conjunt de Catalunya des que hi ha registres, només superat per l'estiu del 2022.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2025/08/11/68998d90f229a.r_d.1500-845-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Mèteo"
+      ]
+    },
+    {
+      "title": "\"Si el malestar postvacacional no es dilueix en dues setmanes hem d'anar amb compte, pot ser una depressió\"",
+      "pubDate": "2025-09-04 05:00:00",
+      "link": "https://www.rac1.cat/salut/20250904/285761/narcis-cardoner-psiquiatria-hospital-sant-pau-malestar-postvacacional-es-dilueix-dues-setmanes-compte-depressio.html",
+      "guid": "https://www.rac1.cat/salut/20250904/285761/narcis-cardoner-psiquiatria-hospital-sant-pau-malestar-postvacacional-es-dilueix-dues-setmanes-compte-depressio.html",
+      "author": "Clara Bardají",
+      "thumbnail": "",
+      "description": "Ha començat setembre i, amb això, les vacances de moltes persones arriben a la seva fi. És el moment de tornar a la rutina, a la feina o a l'escola.",
+      "content": "Ha començat setembre i, amb això, les vacances de moltes persones arriben a la seva fi. És el moment de tornar a la rutina, a la feina o a l'escola.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2025/09/03/68b80569296c5.r_d.543-173-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Salut"
+      ]
+    },
+    {
+      "title": "Marc Guiu: \"No em penedeixo d'haver marxat al Chelsea\"",
+      "pubDate": "2025-09-04 06:37:47",
+      "link": "https://www.rac1.cat/esports/20250904/285949/marc-guiu-no-penedeixo-haver-marxat-chelsea-tudiras.html",
+      "guid": "https://www.rac1.cat/esports/20250904/285949/marc-guiu-no-penedeixo-haver-marxat-chelsea-tudiras.html",
+      "author": "Roger Saperas",
+      "thumbnail": "",
+      "description": "Va tenir un debut fulgurant amb Xavi. De fet, és el debutant que ha trigat menys a marcar en tota la història del Barça.",
+      "content": "Va tenir un debut fulgurant amb Xavi. De fet, és el debutant que ha trigat menys a marcar en tota la història del Barça.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2025/09/04/68b930d22ad03.r_d.451-324-0.png",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Esports"
+      ]
+    },
+    {
+      "title": "Un any sense dormir pel soroll de la nevera d'un veí: \"M'he de posar sons relaxants amb el mòbil per camuflar-ho\"",
+      "pubDate": "2025-09-03 16:37:25",
+      "link": "https://www.rac1.cat/societat/20250903/285901/any-dormir-pel-soroll-nevera-vei-posar-sons-relaxants-mobil-camuflar-ho-versio.html",
+      "guid": "https://www.rac1.cat/societat/20250903/285901/any-dormir-pel-soroll-nevera-vei-posar-sons-relaxants-mobil-camuflar-ho-versio.html",
+      "author": "Joan Torras",
+      "thumbnail": "",
+      "description": "Tinc el soroll totalment assimilat perquè el sento nit i dia. És com el dels vaixells que surten del port, una vibració constant.",
+      "content": "Tinc el soroll totalment assimilat perquè el sento nit i dia. És com el dels vaixells que surten del port, una vibració constant.",
+      "enclosure": {
+        "link": "https://www.rac1.cat/files/og_thumbnail/files/fp/uploads/2025/09/03/68b86e3f889ae.r_d.947-455-0.png",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Societat"
+      ]
+    }
+  ]
+}

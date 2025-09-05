@@ -1,0 +1,153 @@
+{
+  "status": "ok",
+  "feed": {
+    "url": "https://feeds.bbci.co.uk/news/rss.xml",
+    "title": "BBC News",
+    "link": "https://www.bbc.co.uk/news",
+    "author": "",
+    "description": "BBC News - News Front Page",
+    "image": "https://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif"
+  },
+  "items": [
+    {
+      "title": "Man denies deliberately driving into crowd at Liverpool parade",
+      "pubDate": "2025-09-04 10:39:42",
+      "link": "https://www.bbc.com/news/articles/cwyl38115j2o?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/cwyl38115j2o#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5d39/live/0a007760-897f-11f0-9cf6-cbf3e73ce2b9.jpg",
+      "description": "Paul Doyle, 53, denies 31 charges including causing grievous bodily harm with intent.",
+      "content": "Paul Doyle, 53, denies 31 charges including causing grievous bodily harm with intent.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/5d39/live/0a007760-897f-11f0-9cf6-cbf3e73ce2b9.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "Martha's rule rolled out to all acute hospitals in England after hundreds of lives saved",
+      "pubDate": "2025-09-04 06:20:58",
+      "link": "https://www.bbc.com/news/articles/c8e1zw28766o?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/c8e1zw28766o#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c1b1/live/f58d6990-84e8-11f0-8c11-4fc052682191.png",
+      "description": "Hundreds of patients have been helped by rule, which makes it easier to get an urgent second opinion.",
+      "content": "Hundreds of patients have been helped by rule, which makes it easier to get an urgent second opinion.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/c1b1/live/f58d6990-84e8-11f0-8c11-4fc052682191.png"
+      },
+      "categories": []
+    },
+    {
+      "title": "World's largest sports piracy site shut down by police",
+      "pubDate": "2025-09-04 10:33:38",
+      "link": "https://www.bbc.com/news/articles/c62q4l0d171o?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/c62q4l0d171o#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9d03/live/78199b30-896d-11f0-9df7-33c9b75a833d.jpg",
+      "description": "The take-down of the site has been championed as a major victory for live sports broadcasters.",
+      "content": "The take-down of the site has been championed as a major victory for live sports broadcasters.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/9d03/live/78199b30-896d-11f0-9df7-33c9b75a833d.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "Fashion college campus, home extension and Big Ben tower up for architecture award",
+      "pubDate": "2025-09-03 23:32:19",
+      "link": "https://www.bbc.com/news/articles/cx27nmj77xzo?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/cx27nmj77xzo#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b9ee/live/cdb0b310-896f-11f0-9cf6-cbf3e73ce2b9.jpg",
+      "description": "The restoration of London's famous Elizabeth Tower is nominated for the prestigious Stirling Prize.",
+      "content": "The restoration of London's famous Elizabeth Tower is nominated for the prestigious Stirling Prize.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b9ee/live/cdb0b310-896f-11f0-9cf6-cbf3e73ce2b9.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "Graham Linehan goes on trial over alleged harassment of trans woman",
+      "pubDate": "2025-09-04 11:20:27",
+      "link": "https://www.bbc.com/news/articles/cn0x2kx08wdo?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/cn0x2kx08wdo#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2cc3/live/b328fcd0-8967-11f0-9df7-33c9b75a833d.jpg",
+      "description": "The Father Ted creator is on trial at Westminster Magistrates' Court days after a separate arrest at Heathrow.",
+      "content": "The Father Ted creator is on trial at Westminster Magistrates' Court days after a separate arrest at Heathrow.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2cc3/live/b328fcd0-8967-11f0-9df7-33c9b75a833d.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "It's 4,000 miles from Ukraine - but even this Asian city is part of Russia's war",
+      "pubDate": "2025-09-03 23:18:55",
+      "link": "https://www.bbc.com/news/articles/cvg0e54z7x8o?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/cvg0e54z7x8o#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b346/live/c2d508e0-896c-11f0-84c8-99de564f0440.jpg",
+      "description": "In Vladivostok, a city on China's and North Korea's border, Russia's war on Ukraine looms large.",
+      "content": "In Vladivostok, a city on China's and North Korea's border, Russia's war on Ukraine looms large.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b346/live/c2d508e0-896c-11f0-84c8-99de564f0440.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "Sophie Turner to play Lara Croft in Tomb Raider series",
+      "pubDate": "2025-09-04 10:00:33",
+      "link": "https://www.bbc.com/news/articles/c7845vwg0zno?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/c7845vwg0zno#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/de95/live/3ae3f4a0-8967-11f0-9df7-33c9b75a833d.jpg",
+      "description": "The Game of Thrones actress will star in the new Prime Video show, helmed by Phoebe Waller-Bridge.",
+      "content": "The Game of Thrones actress will star in the new Prime Video show, helmed by Phoebe Waller-Bridge.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/de95/live/3ae3f4a0-8967-11f0-9df7-33c9b75a833d.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "My toddler's constipation wasn't taken seriously until he reached crisis point",
+      "pubDate": "2025-09-03 23:11:04",
+      "link": "https://www.bbc.com/news/articles/cgr9zg17n5yo?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/cgr9zg17n5yo#0",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1e22/live/42ddb000-7cf2-11f0-b048-e3872696e5df.jpg",
+      "description": "The number of children being admitted to hospital with constipation is at a 10-year high.",
+      "content": "The number of children being admitted to hospital with constipation is at a 10-year high.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/1e22/live/42ddb000-7cf2-11f0-b048-e3872696e5df.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "'It collapsed like a cardboard box': Witnesses describe fatal Lisbon crash",
+      "pubDate": "2025-09-04 10:12:09",
+      "link": "https://www.bbc.com/news/articles/c20v4g71zrpo?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/c20v4g71zrpo#1",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2995/live/a2f7f230-8976-11f0-bdd3-7be793555c9e.jpg",
+      "description": "The crash killed at least 17 people and injured 20 more, some critically, Portuguese authorities say.",
+      "content": "The crash killed at least 17 people and injured 20 more, some critically, Portuguese authorities say.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/2995/live/a2f7f230-8976-11f0-bdd3-7be793555c9e.jpg"
+      },
+      "categories": []
+    },
+    {
+      "title": "Who are the victims?",
+      "pubDate": "2025-09-04 09:51:41",
+      "link": "https://www.bbc.com/news/articles/cnvryg271ymo?at_medium=RSS&at_campaign=rss",
+      "guid": "https://www.bbc.com/news/articles/cnvryg271ymo#1",
+      "author": "",
+      "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6912/live/5149d780-8978-11f0-93a9-c9fc9cc74be9.jpg",
+      "description": "A transport worker is among those killed, while a three-year-old German boy is reported to have escaped with minor injuries.",
+      "content": "A transport worker is among those killed, while a three-year-old German boy is reported to have escaped with minor injuries.",
+      "enclosure": {
+        "thumbnail": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6912/live/5149d780-8978-11f0-93a9-c9fc9cc74be9.jpg"
+      },
+      "categories": []
+    }
+  ]
+}

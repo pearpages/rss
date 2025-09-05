@@ -1,0 +1,183 @@
+{
+  "status": "ok",
+  "feed": {
+    "url": "https://www.lavanguardia.com/rss/home.xml",
+    "title": "Portada",
+    "link": "https://www.lavanguardia.com/",
+    "author": "",
+    "description": "Portada",
+    "image": "https://www.lavanguardia.com/images/logo.png"
+  },
+  "items": [
+    {
+      "title": "El Gobierno ve en el plante de Feijóo una grave desconsideración al Rey y a las instituciones",
+      "pubDate": "2025-09-04 08:04:34",
+      "link": "https://www.lavanguardia.com/politica/20250904/11027220/gobierno-ve-plante-feijoo-apertura-ano-judicial-grave-desconsideracion-rey-instituciones.html",
+      "guid": "https://www.lavanguardia.com/politica/20250904/11027220/gobierno-ve-plante-feijoo-apertura-ano-judicial-grave-desconsideracion-rey-instituciones.html",
+      "author": "Josep Maria Calvet Fransesch",
+      "thumbnail": "",
+      "description": "Respetar las instituciones democráticas es fundamental en un Estado de Derecho, advierte Bolaños",
+      "content": "Respetar las instituciones democráticas es fundamental en un Estado de Derecho, advierte Bolaños",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/uploads/2025/09/03/68b815a38874c.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Política"
+      ]
+    },
+    {
+      "title": "Un problema técnico en el avión oficial obliga a Sánchez a anular su viaje a París",
+      "pubDate": "2025-09-04 08:04:38",
+      "link": "https://www.lavanguardia.com/politica/20250904/11027219/averia-avion-sanchez-anular-viaje-paris.html",
+      "guid": "https://www.lavanguardia.com/politica/20250904/11027219/averia-avion-sanchez-anular-viaje-paris.html",
+      "author": "Eusebio Val Mitjavila",
+      "thumbnail": "",
+      "description": "El presidente se dirigía a una cumbre sobre Ucrania en la que finalmente participará por videoconferencia",
+      "content": "El presidente se dirigía a una cumbre sobre Ucrania en la que finalmente participará por videoconferencia",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2023/02/01/63da95cfb6ba3.r_d.1928-1352-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Política"
+      ]
+    },
+    {
+      "title": "La cifra de muertos asciende a 17 en la tragedia del funicular Elevador da Glòria de Lisboa",
+      "pubDate": "2025-09-04 08:46:57",
+      "link": "https://www.lavanguardia.com/sucesos/20250904/11027414/cifra-muertos-asciende-17-tragedia-funicular-elevador-da-gloria-lisboa.html",
+      "guid": "https://www.lavanguardia.com/sucesos/20250904/11027414/cifra-muertos-asciende-17-tragedia-funicular-elevador-da-gloria-lisboa.html",
+      "author": "María del Carmen Navarro Miranda",
+      "thumbnail": "",
+      "description": "Las dos últimas víctimas fallecieron en el hospital, donde permanecen ingresados 21 heridos, 7 en estado grave",
+      "content": "Las dos últimas víctimas fallecieron en el hospital, donde permanecen ingresados 21 heridos, 7 en estado grave",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2025/09/04/68b95a33ad05e.r_d.1637-965-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Sucesos"
+      ]
+    },
+    {
+      "title": "Última hora del accidente del funicular de Lisboa y la principal hipótesis de la tragedia, en directo",
+      "pubDate": "2025-09-04 09:03:55",
+      "link": "https://www.lavanguardia.com/internacional/20250904/11027322/accidente-funicular-lisboa-ultima-hora-sobre-heridos-numero-muertos-posibles-causas-descarrilamiento.html",
+      "guid": "https://www.lavanguardia.com/internacional/20250904/11027322/accidente-funicular-lisboa-ultima-hora-sobre-heridos-numero-muertos-posibles-causas-descarrilamiento.html",
+      "author": "Héctor Farrés García",
+      "thumbnail": "",
+      "description": "15 fallecidos y de decenas de heridos, entre ellos se encuentran dos ciudadanos españoles, que según el Ministerio de Asuntos Exteriores",
+      "content": "15 fallecidos y de decenas de heridos, entre ellos se encuentran dos ciudadanos españoles, que según el Ministerio de Asuntos Exteriores",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2025/09/03/68b88c562d71d.r_d.1836-1401-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Internacional"
+      ]
+    },
+    {
+      "title": "Todo lo que se sabe sobre el descarrilamiento del funicular de Lisboa",
+      "pubDate": "2025-09-04 09:09:35",
+      "link": "https://www.lavanguardia.com/sucesos/agencia/20250904/11027519/causas-descarrilamiento-funicular-lisboa.html",
+      "guid": "https://www.lavanguardia.com/sucesos/agencia/20250904/11027519/causas-descarrilamiento-funicular-lisboa.html",
+      "author": "Redacción La Vanguardia",
+      "thumbnail": "",
+      "description": "La empresa pública de transporte urbano dice que el mantenimiento estaba al día, mientras que los sindicatos señalan \"deficiencias\" tras la privatización del servicio",
+      "content": "La empresa pública de transporte urbano dice que el mantenimiento estaba al día, mientras que los sindicatos señalan \"deficiencias\" tras la privatización del servicio",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2025/09/03/68b88c562d71d.r_d.1836-1401-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Sucesos"
+      ]
+    },
+    {
+      "title": "El exconseller Giró deja el escaño por sus diferencias con Puigdemont",
+      "pubDate": "2025-09-03 22:00:00",
+      "link": "https://www.lavanguardia.com/politica/20250904/11026460/junts-pierde-jaume-giro-voz-pragmatica-pactista-formacion.html",
+      "guid": "https://www.lavanguardia.com/politica/20250904/11026460/junts-pierde-jaume-giro-voz-pragmatica-pactista-formacion.html",
+      "author": "Josep Martí Blanch",
+      "thumbnail": "",
+      "description": "El exconseller rompe con el partido por las discrepancias políticas con Puigdemont",
+      "content": "El exconseller rompe con el partido por las discrepancias políticas con Puigdemont",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2025/09/03/68b88851de37b.r_d.3219-2062-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Política"
+      ]
+    },
+    {
+      "title": "Esperando a Puigdemont",
+      "pubDate": "2025-09-04 04:00:00",
+      "link": "https://www.lavanguardia.com/politica/20250904/11026446/esperando-puigdemont-junts.html",
+      "guid": "https://www.lavanguardia.com/politica/20250904/11026446/esperando-puigdemont-junts.html",
+      "author": "María Dolores García García",
+      "thumbnail": "",
+      "description": "El retorno del ex president a Catalunya podría aportar estabilidad a Sánchez, pero también es esencial para que Junts encare con claridad el ciclo electoral de municipales y catalanas",
+      "content": "El retorno del ex president a Catalunya podría aportar estabilidad a Sánchez, pero también es esencial para que Junts encare con claridad el ciclo electoral de municipales y catalanas",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/uploads/2025/09/03/68b80ac1629e2.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Política"
+      ]
+    },
+    {
+      "title": "Trabajo aplicará el registro horario si el miércoles decae la reducción de jornada",
+      "pubDate": "2025-09-04 04:00:00",
+      "link": "https://www.lavanguardia.com/economia/20250904/11026480/trabajo-aplicara-registro-horario-miercoles-decae-reduccion-jornada.html",
+      "guid": "https://www.lavanguardia.com/economia/20250904/11026480/trabajo-aplicara-registro-horario-miercoles-decae-reduccion-jornada.html",
+      "author": "Jaume Masdeu Burch",
+      "thumbnail": "",
+      "description": "Pepe Álvarez considera \"prematuro\" haber fijado la votación para el día 10",
+      "content": "Pepe Álvarez considera \"prematuro\" haber fijado la votación para el día 10",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/uploads/2025/09/03/68b88b1733045.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Economía"
+      ]
+    },
+    {
+      "title": "La hija de Kim Jong Un apunta a ser la 'amada Líder'",
+      "pubDate": "2025-09-04 04:00:00",
+      "link": "https://www.lavanguardia.com/internacional/20250904/11026357/amada-lider.html",
+      "guid": "https://www.lavanguardia.com/internacional/20250904/11026357/amada-lider.html",
+      "author": "Félix Flores Gonzalo",
+      "thumbnail": "",
+      "description": "Kim Ju Ae, de solo 12 años, es promocionada como heredera",
+      "content": "Kim Ju Ae, de solo 12 años, es promocionada como heredera",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2025/09/03/68b87d336b8b9.r_d.1452-1090-0.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Internacional"
+      ]
+    },
+    {
+      "title": "Un micrófono capta a Putin y a Xi hablando de trasplantes y de vivir hasta 150 años",
+      "pubDate": "2025-09-03 16:10:28",
+      "link": "https://www.lavanguardia.com/internacional/20250903/11026002/putin-xi-jinping-microfono-inmortalidad.html",
+      "guid": "https://www.lavanguardia.com/internacional/20250903/11026002/putin-xi-jinping-microfono-inmortalidad.html",
+      "author": "Genérico AFP Genérico AFP",
+      "thumbnail": "",
+      "description": "Los presidentes ruso y chino se extienden en pleno desfile en una conversación sobra la medicina y la inmortalidad",
+      "content": "Los presidentes ruso y chino se extienden en pleno desfile en una conversación sobra la medicina y la inmortalidad",
+      "enclosure": {
+        "link": "https://www.lavanguardia.com/files/og_thumbnail/uploads/2025/09/04/68b95115e5be4.jpeg",
+        "type": "image/jpeg"
+      },
+      "categories": [
+        "Internacional"
+      ]
+    }
+  ]
+}
