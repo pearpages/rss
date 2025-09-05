@@ -16,7 +16,7 @@ class RSSService {
   }
 
   private createStrategy(): RSSStrategy {
-    const isDevelopment = import.meta.env.VITE_DEV ?? false;
+    const isDevelopment = import.meta.env.VITE_DEV === 'true';
     
     if (isDevelopment) {
       Logger.info('🎭 Initializing RSS Service in Development mode (using mocks)');
