@@ -303,6 +303,23 @@ export const DEFAULT_RSS_FEEDS: RSSFeed[] = [
 
 ## 🔧 Configuration
 
+### Environment Variables
+
+The application uses Vite's built-in environment variables:
+
+- **`import.meta.env.DEV`**: Automatically set by Vite
+  - `true` in development mode (when running `npm run dev`)
+  - `false` in production mode (when building with `npm run build`)
+  - Used to switch between development (mock data) and production (real RSS feeds) strategies
+
+For custom environment variables, create a `.env` file in the project root:
+```bash
+# .env (not tracked in git)
+VITE_CUSTOM_VARIABLE=your_value
+```
+
+Access custom variables with `import.meta.env.VITE_CUSTOM_VARIABLE`. Only variables prefixed with `VITE_` are exposed to the client.
+
 ### CORS Handling
 
 RSS feeds are fetched through RSS2JSON proxy service since most RSS feeds don't support CORS headers. The service is configured in `src/services/rssService.ts` and provides reliable feed parsing with multiple fallback mechanisms.
