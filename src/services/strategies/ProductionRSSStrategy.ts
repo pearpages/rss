@@ -76,6 +76,7 @@ const rssItemsAdapter = (items: any[], feed: RSSFeed): RSSItem[] =>
         author?: string;
         thumbnail?: string;
         enclosure?: { link?: string };
+        categories?: string[];
       },
       index: number
     ) => ({
@@ -87,6 +88,7 @@ const rssItemsAdapter = (items: any[], feed: RSSFeed): RSSItem[] =>
       source: feed.url,
       sourceName: feed.name,
       image: extractImage(item),
+      categories: item.categories || [],
     })
   );
 
@@ -127,15 +129,13 @@ const retryWithBackoff = async <T>(
 ): Promise<T> => {
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
-      Logger.info(
-        `Fetching ${feedName} (attempt ${attempt}/${MAX_RETRIES})`
-      );
+      Logger.info(`Fetching ${feedName} (attempt ${attempt}/${MAX_RETRIES})`);
 
       const result = await fetchFeedMethod();
       return result;
     } catch (error: unknown) {
       const isRateLimit = (error as RateLimitError).isRateLimit;
-      
+
       if (isRateLimit) {
         Logger.warning(
           `🚫 Rate limited for ${feedName} (attempt ${attempt}/${MAX_RETRIES}).`

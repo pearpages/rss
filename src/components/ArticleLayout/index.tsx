@@ -9,6 +9,7 @@ interface ArticleLayoutProps {
     image?: React.ReactNode;
     title: React.ReactNode;
     titleActions: React.ReactNode;
+    categories: React.ReactNode;
     meta: React.ReactNode;
     description?: React.ReactNode;
     actions?: React.ReactNode;
@@ -33,8 +34,8 @@ export function ArticleLayout({
             {children.actions}
           </div>
         </div>
-
         {children.description}
+        {children.categories}
       </div>
     </article>
   );

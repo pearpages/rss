@@ -7,6 +7,7 @@ export interface RSSItem {
   source: string;
   sourceName: string;
   image?: string;
+  categories?: string[];
 }
 
 export interface RSSFeed {

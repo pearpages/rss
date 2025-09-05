@@ -47,6 +47,21 @@ export function ArticlesListView({
                 />
               ),
 
+              categories: article.categories &&
+                article.categories.length > 0 && (
+                  <div className="article-categories">
+                    {article.categories.map((category) => (
+                      <span key={category} className="category-tag">
+                        #
+                        {category
+                          .toLowerCase()
+                          .replace(/\s+/g, '-')
+                          .replace(/\./g, '')}{' '}
+                      </span>
+                    ))}
+                  </div>
+                ),
+
               meta: (
                 <>
                   <span
