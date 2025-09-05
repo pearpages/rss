@@ -7,7 +7,7 @@ import { ReaderModal } from './components/Modal/ReaderModal';
 import { useUserPreferences } from './hooks/useUserPreferences';
 import { getAppVersion } from './utils/version';
 import { CookieNotification } from './components/CookieNotification';
-import { useFetchArticles } from './services/useFetchArticles';
+import { useArticles } from './hooks/useArticles';
 import { useCleanupIgnoredArticles } from './services/useCleanupArticles';
 import { MainContentView } from './components/views';
 
@@ -24,14 +24,12 @@ function HeaderTitle({ onClick }: { onClick?: () => void }) {
 }
 
 function App() {
-  const { articles, loading, error, fetchArticles } = useFetchArticles();
+  const { articles, loading, error, fetchArticles } = useArticles();
   useCleanupIgnoredArticles(articles);
 
-  // Reader modal state
   const [isReaderModalOpen, setIsReaderModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<RSSItem | null>(null);
 
-  // Use the preferences hook
   const {
     selectedSources,
     updateSelectedSources,
@@ -50,7 +48,7 @@ function App() {
     if (selectedSources.length === 0) {
       updateSelectedSources(availableSources);
     }
-  }, [availableSources, selectedSources.length, updateSelectedSources]);
+  }, [selectedSources.length, updateSelectedSources]);
 
   // Filter articles based on selected sources and saved articles
   const filteredArticles = useMemo(() => {
@@ -85,10 +83,6 @@ function App() {
     savedArticles,
     ignoredArticles,
   ]);
-
-  useEffect(() => {
-    fetchArticles();
-  }, [fetchArticles]);
 
   return (
     <div className="app">
