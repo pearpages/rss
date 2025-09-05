@@ -7,6 +7,7 @@ import { ReaderModal } from './components/Modal/ReaderModal';
 import { useUserPreferences } from './hooks/useUserPreferences';
 import { CookieNotification } from './components/CookieNotification';
 import { HeaderTitle } from './components/HeaderTitle';
+import { Header } from './components/Header';
 import { useArticles } from './hooks/useArticles';
 import { useCleanupIgnoredArticles } from './services/useCleanupArticles';
 import { MainContentView } from './components/views';
@@ -78,19 +79,15 @@ function App() {
     <div className="app">
       <CookieNotification />
 
-      <header className="header">
-        <button
-          className="refresh-button"
-          onClick={fetchArticles}
-          disabled={loading}
-        >
-          {loading ? 'Loading...' : '🔄'}
-        </button>
-        {showSavedOnly ? (
-          <HeaderTitle onClick={() => setShowSavedOnly(false)} />
-        ) : (
-          <HeaderTitle />
-        )}
+      <Header
+        title={
+          showSavedOnly ? (
+            <HeaderTitle onClick={() => setShowSavedOnly(false)} />
+          ) : (
+            <HeaderTitle />
+          )
+        }
+      >
         <Menu
           onFilterSources={updateSelectedSources}
           onViewSaved={() => setShowSavedOnly(!showSavedOnly)}
@@ -99,7 +96,7 @@ function App() {
           showSavedOnly={showSavedOnly}
           ignoredArticlesCount={ignoredArticles.length}
         />
-      </header>
+      </Header>
 
       <main className="news-container">
         <MainContentView

@@ -1,0 +1,72 @@
+.save-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  color: #94a3b8;
+  margin-left: auto;
+}
+
+.save-button:hover {
+  background-color: #f1f5f9;
+  color: #fbbf24;
+  transform: scale(1.1);
+}
+
+.save-button.saved {
+  color: #fbbf24;
+}
+
+.save-button.saved:hover {
+  color: #94a3b8;
+}
+
+.ignore-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  color: #94a3b8;
+  margin-left: 0.25rem;
+}
+
+.ignore-button:hover {
+  background-color: #f1f5f9;
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.ignore-button.ignored {
+  color: #ef4444;
+}
+
+.ignore-button.ignored:hover {
+  color: #94a3b8;
+}
+
+.source-tag {
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.source-tag:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 1024px) {
+  .articles-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    grid-auto-rows: min-content;
+  }
+}

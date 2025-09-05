@@ -1,4 +1,13 @@
-import { areCookiesEnabled } from '../../services/cookieService';
+import './index.css';
+
+const areCookiesEnabled = (): boolean => {
+  if (typeof document === 'undefined') {
+    return false;
+  }
+
+  document.cookie = 'testcookie=1';
+  return document.cookie.indexOf('testcookie=') !== -1;
+};
 
 function CookieNotification() {
   return (

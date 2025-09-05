@@ -279,25 +279,6 @@ class CookieService {
   private deleteCookie(name: string): void {
     this.setCookie(name, '', -1);
   }
-
-  /**
-   * Check if cookies are enabled in the browser
-   */
-  areCookiesEnabled(): boolean {
-    if (typeof document === 'undefined') {
-      return false;
-    }
-
-    try {
-      const testKey = 'cookieTest';
-      this.setCookie(testKey, 'test', 1);
-      const isEnabled = this.getCookie(testKey) === 'test';
-      this.deleteCookie(testKey);
-      return isEnabled;
-    } catch {
-      return false;
-    }
-  }
 }
 
 // Export a singleton instance
@@ -321,5 +302,4 @@ export const {
   getTheme,
   saveTheme,
   clearPreferences,
-  areCookiesEnabled,
 } = cookieService;

@@ -1,10 +1,11 @@
 import { formatDistanceToNow } from 'date-fns';
-import type { RSSItem } from '../../types/rss';
-import { ArticleLayout } from '../ArticleLayout';
-import { getSourceColor, isLightColor } from '../../utils/colorUtils';
-import { ArticleTitle } from './ArticleTitle';
-import { ArticleImage } from './ArticleImage';
-import { ArticleTitleActions } from './ArticleTitleActions';
+import type { RSSItem } from '../../../types/rss';
+import { ArticleLayout } from '../../ArticleLayout';
+import { getSourceColor, isLightColor } from '../../../utils/colorUtils';
+import { ArticleTitle } from '../ArticleTitle';
+import { ArticleImage } from '../ArticleImage';
+import { ArticleTitleActions } from '../ArticleTitleActions';
+import './index.css';
 
 interface ArticlesListViewProps {
   articles: RSSItem[];

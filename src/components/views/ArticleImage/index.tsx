@@ -1,5 +1,6 @@
-import type { RSSItem } from '../../types/rss';
-import { LazyImage } from '../LazyImage';
+import type { RSSItem } from '../../../types/rss';
+import { LazyImage } from '../../LazyImage';
+import './index.css';
 
 const ArticleImage = ({ article }: { article: RSSItem }) => {
   return (

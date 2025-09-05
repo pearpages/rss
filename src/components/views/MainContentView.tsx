@@ -126,8 +126,8 @@ export function MainContentView({
         />
       );
 
-    default: // Exhaustive check - should never reach here
-    {
+    default: {
+      // Exhaustive check - should never reach here
       const _exhaustive: never = viewState;
       return _exhaustive;
     }

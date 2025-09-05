@@ -1,0 +1,38 @@
+/* Cookie notification */
+.cookie-notification {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #92400e;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-bottom: 1px solid #f3f4f6;
+  animation: slideDown 0.3s ease-out;
+  position: fixed;
+  top: 3rem; /* Position below the header */
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.cookie-notification p {
+  margin: 0;
+}
+
+/* Responsive design */
+@media (min-width: 640px) {
+  .cookie-notification {
+    top: 3.5rem; /* Adjust for larger header */
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,4 +1,5 @@
-import type { RSSItem } from '../../types/rss';
+import type { RSSItem } from '../../../types/rss';
+import './index.css';
 
 const ArticleTitle = ({ article }: { article: RSSItem }) => {
   return (

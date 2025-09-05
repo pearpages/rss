@@ -10,7 +10,9 @@ interface ArticlesContextType {
   fetchArticles: () => Promise<void>;
 }
 
-export const ArticlesContext = createContext<ArticlesContextType | undefined>(undefined);
+export const ArticlesContext = createContext<ArticlesContextType | undefined>(
+  undefined
+);
 
 export function useArticles() {
   const context = useContext(ArticlesContext);
@@ -18,6 +20,5 @@ export function useArticles() {
     Logger.error('useArticles hook called outside of ArticlesProvider context');
     throw new Error('useArticles must be used within ArticlesProvider');
   }
-  Logger.info('useArticles hook accessed successfully');
   return context;
 }

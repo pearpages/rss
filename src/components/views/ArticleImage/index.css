@@ -1,0 +1,25 @@
+.article-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .article-image {
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  .article-image {
+    height: 300px;
+  }
+}
+
+/* Responsive design */
+@media (min-width: 640px) {
+  .article-image {
+    height: 250px;
+  }
+}
